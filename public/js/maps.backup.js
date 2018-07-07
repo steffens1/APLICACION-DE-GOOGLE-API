@@ -35,7 +35,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
     };
     var clusterStyles = [
         {
-            url: 'assets/img/cluster.png',
+            url: 'img/cluster.png',
             height: 34,
             width: 34
         }
@@ -93,7 +93,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             boxClass: "infobox",
             enableEventPropagation: true,
             closeBoxMargin: "0px 0px -30px 0px",
-            closeBoxURL: "assets/img/close.png",
+            closeBoxURL: "img/close.png",
             infoBoxClearance: new google.maps.Size(1, 1)
         };
 
@@ -396,10 +396,10 @@ function drawInfobox(category, infoboxContent, json, i){
                 '<div class="image">' +
                     '<div class="price">$' + json.data[i].price +  '</div>'+
                     '<div class="item-specific">' +
-                        '<span title="Bedrooms"><img src="assets/img/bedrooms.png">' + json.data[i].bedrooms + '</span>' +
-                        '<span title="Bathrooms"><img src="assets/img/bathrooms.png">' + json.data[i].bathrooms + '</span>' +
-                        '<span title="Area"><img src="assets/img/area.png">' + json.data[i].area + '<sup>2</sup></span>' +
-                        '<span title="Garages"><img src="assets/img/garages.png">' + json.data[i].garages + '</span>' +
+                        '<span title="Bedrooms"><img src="img/bedrooms.png">' + json.data[i].bedrooms + '</span>' +
+                        '<span title="Bathrooms"><img src="img/bathrooms.png">' + json.data[i].bathrooms + '</span>' +
+                        '<span title="Area"><img src="img/area.png">' + json.data[i].area + '<sup>2</sup></span>' +
+                        '<span title="Garages"><img src="img/garages.png">' + json.data[i].garages + '</span>' +
                     '</div>' +
                     '<div class="overlay">' +
                         '<div class="wrapper">' +
@@ -512,10 +512,10 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
             if( category == 'real_estate' ){
                 var itemSpecific =
                 '<div class="item-specific">' +
-                    '<span title="Bedrooms"><img src="assets/img/bedrooms.png">' + json.data[a].bedrooms + '</span>' +
-                    '<span title="Bathrooms"><img src="assets/img/bathrooms.png">' + json.data[a].bathrooms + '</span>' +
-                    '<span title="Area"><img src="assets/img/area.png">' + json.data[a].area + '<sup>2</sup></span>' +
-                    '<span title="Garages"><img src="assets/img/garages.png">' + json.data[a].garages + '</span>' +
+                    '<span title="Bedrooms"><img src="img/bedrooms.png">' + json.data[a].bedrooms + '</span>' +
+                    '<span title="Bathrooms"><img src="img/bathrooms.png">' + json.data[a].bathrooms + '</span>' +
+                    '<span title="Area"><img src="img/area.png">' + json.data[a].area + '<sup>2</sup></span>' +
+                    '<span title="Garages"><img src="img/garages.png">' + json.data[a].garages + '</span>' +
                 '</div>';
                 return itemSpecific;
             }
@@ -557,7 +557,7 @@ function drawModal(json, a){
             '<div class="modal-dialog">' +
                 '<div class="modal-content">' +
                     '<div class="modal-header">' +
-                        '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><img src="assets/img/close.png"></span></button>' +
+                        '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><img src="img/close.png"></span></button>' +
                         '<div class="left">' +
                             '<h2>' + json.data[a].title + '</h2>' +
                             '<figure>' + json.data[a].location + '</figure>' +
