@@ -1,5 +1,6 @@
 <?php require RUTA_APP.'\views\inc\header.php'; ?>
 <!-- Outer Wrapper-->
+
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
     <div id="inner-wrapper">
@@ -8,7 +9,7 @@
             <div class="header">
                 <div class="wrapper">
                     <div class="brand">
-                        <a href="vista/index-directory.php"><img src="vista/assets/img/logo.png" alt="logo"></a>
+                        <a href="vista/index-directory.php"><img src="img/logo.png" alt="logo"></a>
                     </div>
                     <nav class="navigation-items">
                         <div class="wrapper">
@@ -136,21 +137,21 @@
                                             <div class="overlay">
                                                 <div class="inner">
                                                     <div class="content">
-                                                        <h4>Description</h4>
+                                                        <h4>Description</h4>|
                                                         <p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa</p>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="item-specific">
-                                                <span title="Bedrooms"><img src="assets/img/bedrooms.png" alt="">2</span>
-                                                <span title="Bathrooms"><img src="assets/img/bathrooms.png" alt="">2</span>
-                                                <span title="Area"><img src="assets/img/area.png" alt="">240m<sup>2</sup></span>
-                                                <span title="Garages"><img src="assets/img/garages.png" alt="">1</span>
+                                                <span title="Bedrooms"><img src="img/bedrooms.png" alt="">2</span>
+                                                <span title="Bathrooms"><img src="img/bathrooms.png" alt="">2</span>
+                                                <span title="Area"><img src="img/area.png" alt="">240m<sup>2</sup></span>
+                                                <span title="Garages"><img src="img/garages.png" alt="">1</span>
                                             </div>
                                             <div class="icon">
                                                 <i class="fa fa-thumbs-up"></i>
                                             </div>
-                                            <img src="assets/img/items/1.jpg" alt="">
+                                            <img src="img/items/1.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -158,7 +159,7 @@
                                         <figure>63 Birch Street</figure>
                                         <div class="info">
                                             <div class="type">
-                                                <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                <i><img src="icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
                                                 <span>Restaurant</span>
                                             </div>
                                             <div class="rating" data-rating="4"></div>
@@ -181,7 +182,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <img src="assets/img/items/2.jpg" alt="">
+                                            <img src="img/items/2.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -189,7 +190,7 @@
                                         <figure>63 Birch Street</figure>
                                         <div class="info">
                                             <div class="type">
-                                                <i><img src="assets/icons/restaurants-bars/restaurants/cafetaria.png" alt=""></i>
+                                                <i><img src="icons/restaurants-bars/restaurants/cafetaria.png" alt=""></i>
                                                 <span>Cafeteria</span>
                                             </div>
                                             <div class="rating" data-rating="4"></div>
@@ -215,7 +216,7 @@
                                             <div class="item-specific">
                                                 <span>Daily menu from: $6</span>
                                             </div>
-                                            <img src="assets/img/items/restaurant/9.jpg" alt="">
+                                            <img src="img/items/restaurant/9.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -223,7 +224,7 @@
                                         <figure>4662 Bruce Street</figure>
                                         <div class="info">
                                             <div class="type">
-                                                <i><img src="assets/icons/restaurants-bars/restaurants/japanese-food.png" alt=""></i>
+                                                <i><img src="icons/restaurants-bars/restaurants/japanese-food.png" alt=""></i>
                                                 <span>Sushi</span>
                                             </div>
                                             <div class="rating" data-rating="3"></div>
@@ -249,7 +250,7 @@
                                             <div class="item-specific">
                                                 <span>Daily menu from: $6</span>
                                             </div>
-                                            <img src="assets/img/items/restaurant/10.jpg" alt="">
+                                            <img src="img/items/restaurant/10.jpg" alt="">
                                         </a>
                                     </div>
                                     <div class="wrapper">
@@ -257,7 +258,7 @@
                                         <figure>357 Trainer Avenue</figure>
                                         <div class="info">
                                             <div class="type">
-                                                <i><img src="assets/icons/restaurants-bars/restaurants/fishchips.png" alt=""></i>
+                                                <i><img src="icons/restaurants-bars/restaurants/fishchips.png" alt=""></i>
                                                 <span>Sushi Bar</span>
                                             </div>
                                             <div class="rating" data-rating="3"></div>
@@ -300,7 +301,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="assets/img/items/restaurant/8.jpg" alt="">
+                                        <img src="img/items/restaurant/8.jpg" alt="">
                                     </div>
                                     <div class="wrapper">
                                         <a href="item-detail.php"><h3>Magma Bar and Grill</h3></a>
@@ -313,7 +314,7 @@
                                                 <aside class="reviews">6 reviews</aside>
                                             </div>
                                             <div class="type">
-                                                <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                <i><img src="icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
                                                 <span>Restaurant</span>
                                             </div>
                                         </div>
@@ -350,7 +351,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <img src="assets/img/items/restaurant/9.jpg" alt="">
+                                        <img src="img/items/restaurant/9.jpg" alt="">
                                     </div>
                                     <div class="wrapper">
                                         <a href="item-detail.php"><h3>Saguaro Tavern</h3></a>
@@ -363,7 +364,7 @@
                                                 <aside class="reviews">6 reviews</aside>
                                             </div>
                                             <div class="type">
-                                                <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                <i><img src="icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
                                                 <span>Restaurant</span>
                                             </div>
                                         </div>
@@ -406,15 +407,15 @@
                                                         </div>
                                                     </div>
                                                     <div class="item-specific">
-                                                        <span title="Bedrooms"><img src="assets/img/bedrooms.png" alt="">2</span>
-                                                        <span title="Bathrooms"><img src="assets/img/bathrooms.png" alt="">2</span>
-                                                        <span title="Area"><img src="assets/img/area.png" alt="">240m<sup>2</sup></span>
-                                                        <span title="Garages"><img src="assets/img/garages.png" alt="">1</span>
+                                                        <span title="Bedrooms"><img src="img/bedrooms.png" alt="">2</span>
+                                                        <span title="Bathrooms"><img src="img/bathrooms.png" alt="">2</span>
+                                                        <span title="Area"><img src="img/area.png" alt="">240m<sup>2</sup></span>
+                                                        <span title="Garages"><img src="img/garages.png" alt="">1</span>
                                                     </div>
                                                     <div class="icon">
                                                         <i class="fa fa-thumbs-up"></i>
                                                     </div>
-                                                    <img src="assets/img/items/1.jpg" alt="">
+                                                    <img src="img/items/1.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="wrapper">
@@ -422,7 +423,7 @@
                                                 <figure>63 Birch Street</figure>
                                                 <div class="info">
                                                     <div class="type">
-                                                        <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                        <i><img src="icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
                                                         <span>Restaurant</span>
                                                     </div>
                                                     <div class="rating" data-rating="4"></div>
@@ -445,7 +446,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <img src="assets/img/items/2.jpg" alt="">
+                                                    <img src="img/items/2.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="wrapper">
@@ -453,7 +454,7 @@
                                                 <figure>63 Birch Street</figure>
                                                 <div class="info">
                                                     <div class="type">
-                                                        <i><img src="assets/icons/restaurants-bars/restaurants/cafetaria.png" alt=""></i>
+                                                        <i><img src="icons/restaurants-bars/restaurants/cafetaria.png" alt=""></i>
                                                         <span>Cafeteria</span>
                                                     </div>
                                                     <div class="rating" data-rating="4"></div>
@@ -479,7 +480,7 @@
                                                     <div class="item-specific">
                                                         <span>Daily menu from: $6</span>
                                                     </div>
-                                                    <img src="assets/img/items/restaurant/9.jpg" alt="">
+                                                    <img src="img/items/restaurant/9.jpg" alt="">
                                                 </a>
                                             </div>
                                             <div class="wrapper">
@@ -487,7 +488,7 @@
                                                 <figure>4662 Bruce Street</figure>
                                                 <div class="info">
                                                     <div class="type">
-                                                        <i><img src="assets/icons/restaurants-bars/restaurants/japanese-food.png" alt=""></i>
+                                                        <i><img src="icons/restaurants-bars/restaurants/japanese-food.png" alt=""></i>
                                                         <span>Sushi</span>
                                                     </div>
                                                     <div class="rating" data-rating="3"></div>
@@ -516,15 +517,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="item-specific">
-                                                    <span title="Bedrooms"><img src="assets/img/bedrooms.png" alt="">2</span>
-                                                    <span title="Bathrooms"><img src="assets/img/bathrooms.png" alt="">2</span>
-                                                    <span title="Area"><img src="assets/img/area.png" alt="">240m<sup>2</sup></span>
-                                                    <span title="Garages"><img src="assets/img/garages.png" alt="">1</span>
+                                                    <span title="Bedrooms"><img src="img/bedrooms.png" alt="">2</span>
+                                                    <span title="Bathrooms"><img src="img/bathrooms.png" alt="">2</span>
+                                                    <span title="Area"><img src="img/area.png" alt="">240m<sup>2</sup></span>
+                                                    <span title="Garages"><img src="img/garages.png" alt="">1</span>
                                                 </div>
                                                 <div class="icon">
                                                     <i class="fa fa-thumbs-up"></i>
                                                 </div>
-                                                <img src="assets/img/items/1.jpg" alt="">
+                                                <img src="img/items/1.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="wrapper">
@@ -532,7 +533,7 @@
                                             <figure>63 Birch Street</figure>
                                             <div class="info">
                                                 <div class="type">
-                                                    <i><img src="assets/icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
+                                                    <i><img src="icons/restaurants-bars/restaurants/restaurant.png" alt=""></i>
                                                     <span>Restaurant</span>
                                                 </div>
                                                 <div class="rating" data-rating="4"></div>
@@ -552,7 +553,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <img src="assets/img/items/2.jpg" alt="">
+                                                <img src="img/items/2.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="wrapper">
@@ -560,7 +561,7 @@
                                             <figure>63 Birch Street</figure>
                                             <div class="info">
                                                 <div class="type">
-                                                    <i><img src="assets/icons/restaurants-bars/restaurants/cafetaria.png" alt=""></i>
+                                                    <i><img src="icons/restaurants-bars/restaurants/cafetaria.png" alt=""></i>
                                                     <span>Cafeteria</span>
                                                 </div>
                                                 <div class="rating" data-rating="4"></div>
@@ -583,7 +584,7 @@
                                                 <div class="item-specific">
                                                     <span>Daily menu from: $6</span>
                                                 </div>
-                                                <img src="assets/img/items/restaurant/9.jpg" alt="">
+                                                <img src="img/items/restaurant/9.jpg" alt="">
                                             </a>
                                         </div>
                                         <div class="wrapper">
@@ -591,7 +592,7 @@
                                             <figure>4662 Bruce Street</figure>
                                             <div class="info">
                                                 <div class="type">
-                                                    <i><img src="assets/icons/restaurants-bars/restaurants/japanese-food.png" alt=""></i>
+                                                    <i><img src="icons/restaurants-bars/restaurants/japanese-food.png" alt=""></i>
                                                     <span>Sushi</span>
                                                 </div>
                                                 <div class="rating" data-rating="3"></div>
@@ -625,7 +626,7 @@
 <script>
     var _latitude = 51.541216;
     var _longitude = -0.095678;
-    var jsonPath = 'assets/json/items.json.txt';
+    var jsonPath = 'json/items.json.txt';
 
     // Load JSON data and create Google Maps
 
