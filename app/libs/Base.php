@@ -9,9 +9,10 @@
         private $dbh;//database handler 
         private $stmt; // statement
         private $error; 
+        
 
         public function __construct(){
-            //configurar conexion 
+            //configurar conexion s
             $dsn = 'mysql:host='.$this->host.';dbname='.$this->name;
             $opciones =array(
                 PDO::ATTR_PERSISTENT => true , 
