@@ -7,4 +7,4 @@
     
     $iniciar = new Core;
 
-?>
+?>  

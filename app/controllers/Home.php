@@ -1,15 +1,15 @@
 <?php
     class Home extends Controlador{
         
-        private $homes;
+        private $home;
         public function __construct(){
             
-            $this->homes= $this->modelo('Home_m');
+            $this->home= $this->modelo('Home_m');
         }
 
         public function index()
         {
-            $this->vista('Home', $datos);
-            
+            $this->vista('Home');
         }
     }
+    
