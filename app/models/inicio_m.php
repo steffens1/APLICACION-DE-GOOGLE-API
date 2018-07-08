@@ -1,9 +1,9 @@
 <?php
 
-class Inicio{
+class inicio_m{
     private $db;
-    public function __constrcut()
+    public function __construct()
     {
-        # code...
+           
     }
 }

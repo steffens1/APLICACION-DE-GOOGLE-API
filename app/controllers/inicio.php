@@ -2,7 +2,7 @@
 class inicio extends Controlador{
  
     private $inicios;
-     public function __construnct()
+     public function __construct()
      {
          $this->inicios = $this->modelo('inicio_m');
      }

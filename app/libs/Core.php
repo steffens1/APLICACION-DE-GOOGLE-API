@@ -18,7 +18,7 @@
 
             $url = $this->getUrl();
             //buscar en controladores si el controlador existe
-            if(file_exists('../app/controllers/'.ucwords($url[0]).'php')){
+            if(file_exists('../app/controllers/'.ucwords($url[0]).'.php')){
                 //si existe se setea como controlador 
                 $this->controladorActual=ucwords($url[0]);
                 //unset  indece 
