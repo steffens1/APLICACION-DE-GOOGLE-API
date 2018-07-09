@@ -1,4 +1,4 @@
-function drawInfobox(category, infoboxContent, json, i){
+function DibujaCajaInfo(category, infoboxContent, json, i){
 
     if(json[i].color)          { var color = json[i].color }
         else                        { color = '' }
@@ -17,8 +17,8 @@ function drawInfobox(category, infoboxContent, json, i){
     if(json[i].path)     { var gallery = json[i].path}
         else                        { path = '../img/default-item.jpg' }
 
-    var ibContent = '';
-    ibContent =
+    var ibContenedor = '';
+    ibContenedor =
     '<div class="infobox ' + color + '">' +
         '<div class="inner">' +
             '<div class="image">' +
@@ -43,5 +43,5 @@ function drawInfobox(category, infoboxContent, json, i){
         '</div>' +
     '</div>';
 
-    return ibContent;
+    return ibContenedor;
 }

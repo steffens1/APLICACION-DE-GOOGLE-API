@@ -1,4 +1,4 @@
-function drawInfobox(category, infoboxContent, json, i){
+function DibujaCajaInfo(category, infoboxContent, json, i){
 
     if(json[i].color)          { var color = json[i].color }
         else                        { color = '' }
@@ -17,8 +17,8 @@ function drawInfobox(category, infoboxContent, json, i){
     if(json[i].path)     { var gallery = json[i].path }
         else                        { path = '../img/default-item.jpg' }
 
-    var ibContent = '';
-    ibContent =
+    var ibContenedor = '';
+    ibContenedor =
     '<div class="infobox ' + color + '">' +
         '<div class="inner">' +
             '<div class="image">' +
@@ -43,7 +43,7 @@ function drawInfobox(category, infoboxContent, json, i){
         '</div>' +
     '</div>';
 
-    return ibContent;
+    return ibContenedor;
 }
 
 
@@ -55,7 +55,7 @@ var $ = jQuery.noConflict();
 
 var mapStyles = [ {"featureType":"road","elementType":"labels","stylers":[{"visibility":"simplified"},{"lightness":20}]},{"featureType":"administrative.land_parcel","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"transit","elementType":"all","stylers":[{"saturation":-100},{"visibility":"on"},{"lightness":10}]},{"featureType":"road.local","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.local","elementType":"all","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"labels","stylers":[{"visibility":"simplified"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"road.arterial","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":50}]},{"featureType":"water","elementType":"all","stylers":[{"hue":"#a1cdfc"},{"saturation":30},{"lightness":49}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"hue":"#f49935"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"hue":"#fad959"}]}, {featureType:'road.highway',elementType:'all',stylers:[{hue:'#dddbd7'},{saturation:-92},{lightness:60},{visibility:'on'}]}, {featureType:'landscape.natural',elementType:'all',stylers:[{hue:'#c8c6c3'},{saturation:-71},{lightness:-18},{visibility:'on'}]},  {featureType:'poi',elementType:'all',stylers:[{hue:'#d9d5cd'},{saturation:-70},{lightness:20},{visibility:'on'}]} ];
 
-// Set map height to 100% ----------------------------------------------------------------------------------------------
+// Establecer la altura del mapa al 100% ----------------------------------------------------------------------------------------------
 
 var $body = $('body');
 if( $body.hasClass('map-fullscreen') ) {
@@ -69,10 +69,10 @@ if( $body.hasClass('map-fullscreen') ) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Homepage map - Google
+//pagina de inicio - google
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function createHomepageGoogleMap(_latitude,_longitude,json){
+function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
     console.log(json);
     $.get("external/_infobox.js", function() {
         gMap();
@@ -160,7 +160,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             // Infobox HTML element ----------------------------------------------------------------------------------------
 
             var category = json[i].category;
-            infoboxContent.innerHTML = drawInfobox(category, infoboxContent, json, i);
+            infoboxContent.innerHTML = DibujaCajaInfo(category, infoboxContent, json, i);
 
             // Create new markers ------------------------------------------------------------------------------------------
 
@@ -390,150 +390,6 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// OpenStreetMap - Homepage
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function createHomepageOSM(_latitude,_longitude,json,mapProvider){
-
-    $.get("external/_infobox.js", function() {
-        osmMap();
-    });
-
-    function osmMap(){
-        var map = L.map('map', {
-                center: [_latitude,_longitude],
-                zoom: 14,
-                scrollWheelZoom: false
-        });
-
-        L.tileLayer.provider(mapProvider).addTo(map);
-
-        var markers = L.markerClusterGroup({
-            showCoverageOnHover: false,
-            zoomToBoundsOnClick: false
-        });
-
-        var loadedMarkers = [];
-
-        // Create markers on the map -----------------------------------------------------------------------------------
-
-        for (var i = 0; i < json.length; i++) {
-
-            // Set icon for marker -------------------------------------------------------------------------------------
-
-            if( json[i].type_icon ) var icon = '<img src="' + json[i].type_icon +  '">';
-            else icon = '';
-
-            if( json[i].color ) var color = json[i].color;
-            else color = '';
-
-            var markerContent =
-                '<div class="map-marker ' + color + '">' +
-                    '<div class="icon">' +
-                    icon +
-                    '</div>' +
-                '</div>';
-
-            var _icon = L.divIcon({
-                html: markerContent,
-                iconSize:     [36, 46],
-                iconAnchor:   [18, 32],
-                popupAnchor:  [130, -28],
-                className: ''
-            });
-
-            var title = json[i].nombre;
-            var marker = L.marker(new L.LatLng( json[i].lat, json[i].lng ), {
-                title: title,
-                icon: _icon
-            });
-
-            loadedMarkers.push(marker);
-
-            // Infobox HTML element ------------------------------------------------------------------------------------
-
-            var category = json[i].category;
-            var infoboxContent = document.createElement("div");
-            marker.bindPopup(
-                drawInfobox(category, infoboxContent, json, i)
-            );
-            markers.addLayer(marker);
-
-            // Set hover states for marker -----------------------------------------------------------------------------
-
-            marker.on('popupopen', function () {
-                this._icon.className += ' marker-active';
-            });
-            marker.on('popupclose', function () {
-                this._icon.className = 'leaflet-marker-icon leaflet-zoom-animated leaflet-clickable marker-loaded';
-            });
-
-        }
-
-        map.addLayer(markers);
-
-        // Animate already created markers -----------------------------------------------------------------------------
-
-        animateOSMMarkers(map, loadedMarkers, json);
-        map.on('moveend', function() {
-            animateOSMMarkers(map, loadedMarkers, json);
-        });
-
-        markers.on('clusterclick', function (a) {
-
-            var markersInCLuster = a.layer.getAllChildMarkers();
-            var latitudeArray = [];
-            var longitudeArray = [];
-
-            for (var b=0; b < markersInCLuster.length; b++)
-            {
-                var formattedLatitude = parseFloat( markersInCLuster[b]._latlng.lat ).toFixed(6);
-                var formattedLongitude = parseFloat( markersInCLuster[b]._latlng.lng ).toFixed(6);
-                latitudeArray.push( formattedLatitude );
-                longitudeArray.push( formattedLongitude );
-            }
-
-            Array.prototype.allValuesSame = function() {
-                for(var i = 1; i < this.length; i++)
-                {
-                    if(this[i] !== this[0])
-                        return false;
-                }
-                return true;
-            };
-
-            if( latitudeArray.allValuesSame() && longitudeArray.allValuesSame() ){
-                multiChoice(latitudeArray[0], longitudeArray[0], json);
-            }
-            else {
-                a.layer.zoomToBounds();
-            }
-        });
-
-        $('.results .item').hover(
-            function(){
-                loadedMarkers[ $(this).attr('id') - 1 ]._icon.className = 'leaflet-marker-icon leaflet-zoom-animated leaflet-clickable marker-loaded marker-active';
-            },
-            function() {
-                loadedMarkers[ $(this).attr('id') - 1 ]._icon.className = 'leaflet-marker-icon leaflet-zoom-animated leaflet-clickable marker-loaded';
-            }
-        );
-
-
-        $('.geolocation').on("click", function() {
-            map.locate({setView : true})
-        });
-
-        $('body').addClass('loaded');
-        setTimeout(function() {
-            $('body').removeClass('has-fullscreen-map');
-        }, 1000);
-        $('#map').removeClass('fade-map');
-
-        redrawMap('osm', map);
-    }
-}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Item Detail Map - Google
@@ -703,40 +559,6 @@ function multiChoice(sameLatitude, sameLongitude, json) {
     //}
 }
 
-// Animate OSM marker --------------------------------------------------------------------------------------------------
-
-function animateOSMMarkers(map, loadedMarkers, json){
-    var bounds = map.getBounds();
-    var visibleItemsArray = [];
-    var multipleItems = [];
-
-    $.each( loadedMarkers, function (i) {
-        if ( bounds.contains( loadedMarkers[i].getLatLng() ) ) {
-            var category = json[i].category;
-            pushItemsToArray(json, i, category, visibleItemsArray);
-
-            setTimeout(function(){
-                if( loadedMarkers[i]._icon != null ){
-                    loadedMarkers[i]._icon.className = 'leaflet-marker-icon leaflet-zoom-animated leaflet-clickable bounce-animation marker-loaded';
-                }
-            }, i* 50);
-        }
-        else {
-            if( loadedMarkers[i]._icon != null ){
-                loadedMarkers[i]._icon.className = 'leaflet-marker-icon leaflet-zoom-animated leaflet-clickable';
-            }
-        }
-    });
-
-    // Create list of items in Results sidebar -------------------------------------------------------------------------
-
-    $('.items-list .results').html( visibleItemsArray );
-
-    rating('.results .item');
-
-}
-
-// Redraw map after item list is closed --------------------------------------------------------------------------------
 
 function redrawMap(mapProvider, map){
     $('.map .toggle-navigation').click(function() {

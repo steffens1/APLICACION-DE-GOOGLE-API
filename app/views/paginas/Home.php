@@ -75,9 +75,8 @@
                                             <input type="text" class="form-control" id="location" placeholder="ingresa una direccion">
                                         </div>
                                     </div>
-                                    
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search" id="search-location"></i></button>
                                     </div>
                                 </div>
                                 <!-- /.input-row -->
@@ -123,7 +122,7 @@
         // Load JSON data and create Google Maps
         $.getJSON(jsonPath) 
             .done(function(json) {
-                createHomepageGoogleMap(_latitude,_longitude,json);
+                CrearPaginaInicioGoogleMap(_latitude,_longitude,json);
             })
             .fail(function( jqxhr, textStatus, error ) {
                 console.log(error);
