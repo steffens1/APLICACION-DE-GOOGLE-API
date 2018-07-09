@@ -25,7 +25,7 @@
     <!--enviar-->
     <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/jquery.ui.timepicker.css" type="text/css">
     <!-- ultimo agregado -->
-    <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/inicio_css.css">
+    <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/styles.css">
 
     <title> <?php echo NOMBRE;?></title>
 </head>

@@ -514,26 +514,26 @@ function drawItemSpecific(category, json, a){
     var itemSpecific = '';
     if( category ){
         if( category == 'real_estate' ){
-            if( json.data[a].item_specific ){
-                if( json.data[a].item_specific.bedrooms ){
-                    itemSpecific += '<span title="Bedrooms"><img src="img/bedrooms.png">' + json.data[a].item_specific.bedrooms + '</span>';
+            if( json[a].item_specific ){
+                if( json[a].item_specific.bedrooms ){
+                    itemSpecific += '<span title="Bedrooms"><img src="img/bedrooms.png">' + json[a].item_specific.bedrooms + '</span>';
                 }
-                if( json.data[a].item_specific.bathrooms ){
-                    itemSpecific += '<span title="Bathrooms"><img src="img/bathrooms.png">' + json.data[a].item_specific.bathrooms + '</span>';
+                if( json[a].item_specific.bathrooms ){
+                    itemSpecific += '<span title="Bathrooms"><img src="img/bathrooms.png">' + json[a].item_specific.bathrooms + '</span>';
                 }
-                if( json.data[a].item_specific.area ){
-                    itemSpecific += '<span title="Area"><img src="img/area.png">' + json.data[a].item_specific.area + '<sup>2</sup></span>';
+                if( json[a].item_specific.area ){
+                    itemSpecific += '<span title="Area"><img src="img/area.png">' + json[a].item_specific.area + '<sup>2</sup></span>';
                 }
-                if( json.data[a].item_specific.garages ){
-                    itemSpecific += '<span title="Garages"><img src="img/garages.png">' + json.data[a].item_specific.garages + '</span>';
+                if( json[a].item_specific.garages ){
+                    itemSpecific += '<span title="Garages"><img src="img/garages.png">' + json[a].item_specific.garages + '</span>';
                 }
                 return itemSpecific;
             }
         }
         else if ( category == 'bar_restaurant' ){
-            if( json.data[a].item_specific ){
-                if( json.data[a].item_specific.menu ){
-                    itemSpecific += '<span>Menu from: ' + json.data[a].item_specific.menu + '</span>';
+            if( json[a].item_specific ){
+                if( json[a].item_specific.menu ){
+                    itemSpecific += '<span>Menu from: ' + json[a].item_specific.menu + '</span>';
                 }
                 return itemSpecific;
             }

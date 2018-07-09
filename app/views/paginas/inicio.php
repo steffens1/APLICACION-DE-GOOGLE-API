@@ -1,22 +1,14 @@
-
-<div class="contenedor col-sm-12">
-    <h1>inicio</h1>
-
-    <div class="nav-arriba col-sm-12">
-
-    </div>
-
-    <div class="caja-resultados col-sm-4">
-
-    </div>
-
-    <div class="mapa col-sm-8" id="map">
-
-    </div>
+<?php require RUTA_APP.'/views/inc/header_test.php'; ?>
+<div  id="mapas-del-mundo">
 </div>
 
-<script>
-        $(document).ready(function(){
-            main();
-        })
-</script>   
+<script> 
+    $.ajax({
+	url:"inicio/consulta",
+	method:"get",
+	success: function(result){
+    	console.log(JSON.parse(result));
+	}
+})
+</script>
+<?php require RUTA_APP.'/views/inc/footer_test.php'; ?>

@@ -47,24 +47,24 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
     var activeMarker = false;
     var lastClicked = false;
 
-    for (var i = 0; i < json.data.length; i++) {
+    for (var i = 0; i < json.length; i++) {
 
         // Google map marker content -----------------------------------------------------------------------------------
 
         var markerContent = document.createElement('DIV');
-        if( json.data[i].featured == 1 ) {
+        if( json[i].featured == 1 ) {
             markerContent.innerHTML =
-            '<div class="map-marker featured' + json.data[i].color + '">' +
+            '<div class="map-marker featured' + json[i].color + '">' +
                 '<div class="icon">' +
-                    '<img src="' + json.data[i].type_icon +  '">' +
+                    '<img src="' + json[i].type_icon +  '">' +
                 '</div>' +
             '</div>';
         }
         else {
             markerContent.innerHTML =
-            '<div class="map-marker ' + json.data[i].color + '">' +
+            '<div class="map-marker ' + json[i].color + '">' +
                 '<div class="icon">' +
-                    '<img src="' + json.data[i].type_icon +  '">' +
+                    '<img src="' + json[i].type_icon +  '">' +
                 '</div>' +
             '</div>';
         }
@@ -72,7 +72,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         // Create marker on the map ------------------------------------------------------------------------------------
 
         var marker = new RichMarker({
-            position: new google.maps.LatLng( json.data[i].latitude, json.data[i].longitude ),
+            position: new google.maps.LatLng( json[i].lat, json[i].lng ),
             map: map,
             draggable: false,
             content: markerContent,
@@ -98,7 +98,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
         // Infobox HTML element ----------------------------------------------------------------------------------------
 
-        var category = json.data[i].category;
+        var category = json[i].category;
         drawInfobox(category, infoboxContent, json, i);
 
         // Create new markers ------------------------------------------------------------------------------------------
@@ -184,7 +184,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
     // Dynamic loading markers and data from JSON ----------------------------------------------------------------------
 
     google.maps.event.addListener(map, 'idle', function() {
-        $.each( json.data, function (i) {
+        $.each( json, function (i) {
             setTimeout(function(){
                 if ( map.getBounds().contains(newMarkers[i].getPosition()) ){
                     if( !newMarkers[i].content.className ){
@@ -199,7 +199,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
             }, i * 30);
         });
 
-//        for (var i = 0; i < json.data.length; i++) {
+//        for (var i = 0; i < json.length; i++) {
 //            if ( map.getBounds().contains(newMarkers[i].getPosition()) ){
 //                newMarkers[i].setMap(map);
 //                //markerCluster.setMap(map);
@@ -210,9 +210,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 //        }
 
         var visibleItemsArray = [];
-        $.each(json.data, function(a) {
-            if( map.getBounds().contains( new google.maps.LatLng( json.data[a].latitude, json.data[a].longitude ) ) ) {
-                var category = json.data[a].category;
+        $.each(json, function(a) {
+            if( map.getBounds().contains( new google.maps.LatLng( json[a].lat, json[a].lng ) ) ) {
+                var category = json[a].category;
                 pushItemsToArray(json, a, category, visibleItemsArray);
             }
         });
@@ -221,9 +221,9 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
         $('.items-list .results').html( visibleItemsArray );
 
-        $.each(json.data, function(a) {
-            if( map.getBounds().contains( new google.maps.LatLng( json.data[a].latitude, json.data[a].longitude ) ) ) {
-                is_cached(json.data[a].gallery[0], a);
+        $.each(json, function(a) {
+            if( map.getBounds().contains( new google.maps.LatLng( json[a].lat, json[a].lng ) ) ) {
+                is_cached(json[a].path, a);
             }
         });
 
@@ -267,7 +267,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
     function is_cached(src, a) {
         var image = new Image();
-        var loadedImage = $('.results li #' + json.data[a].id + ' .image');
+        var loadedImage = $('.results li #' + json[a].id + ' .image');
         image.src = src;
         if( image.complete ){
             $(".results").each(function() {
@@ -277,7 +277,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
         }
         else {
             $(".results").each(function() {
-                $('.results li #' + json.data[a].id + ' .image').addClass('loading');
+                $('.results li #' + json[a].id + ' .image').addClass('loading');
             });
             $(image).load(function(){
                 loadedImage.removeClass('loading');
@@ -290,7 +290,7 @@ function createHomepageGoogleMap(_latitude,_longitude,json){
 
 function animateMarkers(json,newMarkers){
     if( mapLoaded == false ){
-        $.each( json.data, function (i) {
+        $.each( json, function (i) {
             setTimeout(function(){
                 if( !newMarkers[i].content.className ){
                     newMarkers[i].content.className += 'bounce-animation marker-loaded';
@@ -300,7 +300,7 @@ function animateMarkers(json,newMarkers){
         mapLoaded = true;
     }
     else {
-        for( var a = 0; a < json.data.length; a++ ){
+        for( var a = 0; a < json.length; a++ ){
             newMarkers[a].content.className = 'marker-loaded';
         }
     }
@@ -396,32 +396,32 @@ function drawInfobox(category, infoboxContent, json, i){
     // Real Estate Infobox ---------------------------------------------------------------------------------------------
     if( category == 'real_estate' ){
         infoboxContent.innerHTML =
-        '<div class="infobox real_estate ' + json.data[i].color + '">' +
+        '<div class="infobox real_estate ' + json[i].color + '">' +
             '<div class="inner">' +
                 '<div class="image">' +
-                    '<div class="price">$' + json.data[i].price +  '</div>'+
+                    '<div class="price">$' + json[i].price +  '</div>'+
                     '<div class="item-specific">' +
-                        '<span title="Bedrooms"><img src="img/bedrooms.png">' + json.data[i].bedrooms + '</span>' +
-                        '<span title="Bathrooms"><img src="img/bathrooms.png">' + json.data[i].bathrooms + '</span>' +
-                        '<span title="Area"><img src="img/area.png">' + json.data[i].area + '<sup>2</sup></span>' +
-                        '<span title="Garages"><img src="img/garages.png">' + json.data[i].garages + '</span>' +
+                        '<span title="Bedrooms"><img src="img/bedrooms.png">' + json[i].bedrooms + '</span>' +
+                        '<span title="Bathrooms"><img src="img/bathrooms.png">' + json[i].bathrooms + '</span>' +
+                        '<span title="Area"><img src="img/area.png">' + json[i].area + '<sup>2</sup></span>' +
+                        '<span title="Garages"><img src="img/garages.png">' + json[i].garages + '</span>' +
                     '</div>' +
                     '<div class="overlay">' +
                         '<div class="wrapper">' +
-                            '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + json.data[i].id + '">Quick View</a>' +
+                            '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + json[i].id + '">Quick View</a>' +
                             '<hr>' +
-                            '<a href="' + json.data[i].url +  '" class="detail">Go to Detail</a>' +
+                            '<a href="' + json[i].url +  '" class="detail">Go to Detail</a>' +
                         '</div>' +
                     '</div>' +
-                    '<a href="' + json.data[i].url +  '" class="description">' +
+                    '<a href="' + json[i].url +  '" class="description">' +
                         '<div class="meta">' +
-                            '<div class="type">' + json.data[i].type +  '</div>' +
-                            '<h2>' + json.data[i].title +  '</h2>' +
-                            '<figure>' + json.data[i].location +  '</figure>' +
+                            '<div class="type">' + json[i].type +  '</div>' +
+                            '<h2>' + json[i].nombre +  '</h2>' +
+                            '<figure>' + json[i].location +  '</figure>' +
                             '<i class="fa fa-angle-right"></i>' +
                         '</div>' +
                     '</a>' +
-                    '<img src="' + json.data[i].gallery[0] +  '">' +
+                    '<img src="' + json[i].path +  '">' +
                 '</div>' +
             '</div>' +
         '</div>';
@@ -429,26 +429,26 @@ function drawInfobox(category, infoboxContent, json, i){
     // Bar & Restaurant Infobox ----------------------------------------------------------------------------------------
     else if( category == 'bar_restaurant' ){
         infoboxContent.innerHTML =
-        '<div class="infobox bar_restaurant ' + json.data[i].color + '">' +
+        '<div class="infobox bar_restaurant ' + json[i].color + '">' +
             '<div class="inner">' +
                 '<div class="image">' +
-                    '<div class="price"><strong>Daily Menu: </strong>$' + json.data[i].price +  '</div>'+
+                    '<div class="price"><strong>Daily Menu: </strong>$' + json[i].price +  '</div>'+
                     '<div class="overlay">' +
                         '<div class="wrapper">' +
-                            '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + json.data[i].id + '">Quick View</a>' +
+                            '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + json[i].id + '">Quick View</a>' +
                             '<hr>' +
-                            '<a href="' + json.data[i].url +  '" class="detail">Go to Detail</a>' +
+                            '<a href="' + json[i].url +  '" class="detail">Go to Detail</a>' +
                         '</div>' +
                     '</div>' +
-                    '<a href="' + json.data[i].url +  '" class="description">' +
+                    '<a href="' + json[i].url +  '" class="description">' +
                         '<div class="meta">' +
-                            '<div class="type">' + json.data[i].type +  '</div>' +
-                            '<h2>' + json.data[i].title +  '</h2>' +
-                            '<figure>' + json.data[i].location +  '</figure>' +
+                            '<div class="type">' + json[i].type +  '</div>' +
+                            '<h2>' + json[i].nombre +  '</h2>' +
+                            '<figure>' + json[i].location +  '</figure>' +
                             '<i class="fa fa-angle-right"></i>' +
                         '</div>' +
                     '</a>' +
-                    '<img src="' + json.data[i].gallery[0] +  '">' +
+                    '<img src="' + json[i].path +  '">' +
                 '</div>' +
             '</div>' +
         '</div>';
@@ -456,25 +456,25 @@ function drawInfobox(category, infoboxContent, json, i){
     // Other Infobox ---------------------------------------------------------------------------------------------------
     else {
         infoboxContent.innerHTML =
-        '<div class="infobox ' + json.data[i].color + '">' +
+        '<div class="infobox ' + json[i].color + '">' +
             '<div class="inner">' +
                 '<div class="image">' +
                     '<div class="overlay">' +
                         '<div class="wrapper">' +
-                            '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + json.data[i].id + '">Quick View</a>' +
+                            '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + json[i].id + '">Quick View</a>' +
                             '<hr>' +
-                            '<a href="' + json.data[i].url +  '" class="detail">Go to Detail</a>' +
+                            '<a href="' + json[i].url +  '" class="detail">Go to Detail</a>' +
                         '</div>' +
                     '</div>' +
-                    '<a href="' + json.data[i].url +  '" class="description">' +
+                    '<a href="' + json[i].url +  '" class="description">' +
                         '<div class="meta">' +
-                            '<div class="type">' + json.data[i].type +  '</div>' +
-                            '<h2>' + json.data[i].title +  '</h2>' +
-                            '<figure>' + json.data[i].location +  '</figure>' +
+                            '<div class="type">' + json[i].type +  '</div>' +
+                            '<h2>' + json[i].nombre +  '</h2>' +
+                            '<figure>' + json[i].location +  '</figure>' +
                             '<i class="fa fa-angle-right"></i>' +
                         '</div>' +
                     '</a>' +
-                    '<img src="' + json.data[i].gallery[0] +  '">' +
+                    '<img src="' + json[i].path +  '">' +
                 '</div>' +
             '</div>' +
         '</div>';
@@ -488,25 +488,25 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
 
     visibleItemsArray.push(
         '<li>' +
-            '<a href="#" class="item" id="' + json.data[a].id + '">' +
+            '<a href="#" class="item" id="' + json[a].id + '">' +
                 '<div class="image">' +
                     '<div class="inner">' +
                         '<div class="item-specific">' +
                             '<span>' + drawItemSpecific(category) + '</span>' +
                         '</div>' +
-                        '<img src="' + json.data[a].gallery[0] + '" alt="">' +
+                        '<img src="' + json[a].path + '" alt="">' +
                     '</div>' +
                 '</div>' +
                 '<div class="wrapper">' +
-                    '<div id="' + json.data[a].id + '"><h3>' + json.data[a].title + '</h3></div>' +
-                    '<figure>' + json.data[a].location + '</figure>' +
-                    itemPrice(json.data[a].price) +
+                    '<div id="' + json[a].id + '"><h3>' + json[a].nombre + '</h3></div>' +
+                    '<figure>' + json[a].location + '</figure>' +
+                    itemPrice(json[a].price) +
                     '<div class="info">' +
                         '<div class="type">' +
-                            '<i><img src="' + json.data[a].type_icon + '" alt=""></i>' +
-                            '<span>' + json.data[a].type + '</span>' +
+                            '<i><img src="' + json[a].type_icon + '" alt=""></i>' +
+                            '<span>' + json[a].type + '</span>' +
                         '</div>' +
-                        '<div class="rating" data-rating="' + json.data[a].rating + '"></div>' +
+                        '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
                     '</div>' +
                 '</div>' +
             '</a>' +
@@ -518,10 +518,10 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
             if( category == 'real_estate' ){
                 var itemSpecific =
                 '<div class="item-specific">' +
-                    '<span title="Bedrooms"><img src="img/bedrooms.png">' + json.data[a].bedrooms + '</span>' +
-                    '<span title="Bathrooms"><img src="img/bathrooms.png">' + json.data[a].bathrooms + '</span>' +
-                    '<span title="Area"><img src="img/area.png">' + json.data[a].area + '<sup>2</sup></span>' +
-                    '<span title="Garages"><img src="img/garages.png">' + json.data[a].garages + '</span>' +
+                    '<span title="Bedrooms"><img src="img/bedrooms.png">' + json[a].bedrooms + '</span>' +
+                    '<span title="Bathrooms"><img src="img/bathrooms.png">' + json[a].bathrooms + '</span>' +
+                    '<span title="Area"><img src="img/area.png">' + json[a].area + '<sup>2</sup></span>' +
+                    '<span title="Garages"><img src="img/garages.png">' + json[a].garages + '</span>' +
                 '</div>';
                 return itemSpecific;
             }
@@ -548,8 +548,8 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
 // Load data for modal before it is created (drawn) --------------------------------------------------------------------
 
 function loadDataForModal(json, id){
-    $.each(json.data, function(a) {
-        if( json.data[a].id == id ) {
+    $.each(json, function(a) {
+        if( json[a].id == id ) {
             drawModal(json, a);
         }
     });
@@ -565,16 +565,16 @@ function drawModal(json, a){
                     '<div class="modal-header">' +
                         '<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"><img src="img/close.png"></span></button>' +
                         '<div class="left">' +
-                            '<h2>' + json.data[a].title + '</h2>' +
-                            '<figure>' + json.data[a].location + '</figure>' +
-                            '<div class="rating" data-rating="' + json.data[a].rating + '">' +
+                            '<h2>' + json[a].nombre + '</h2>' +
+                            '<figure>' + json[a].location + '</figure>' +
+                            '<div class="rating" data-rating="' + json[a].rating + '">' +
                                 '<aside class="reviews">6 reviews</aside>' +
                             '</div>' +
                         '</div>' +
                         '<div class="right">' +
                             '<span class="type">' +
-                                '<img src="' + json.data[a].type_icon + '">' +
-                                '<span>' + json.data[a].type + '</span>' +
+                                '<img src="' + json[a].type_icon + '">' +
+                                '<span>' + json[a].type + '</span>' +
                             '</span>' +
                             '<a href="#" class="bookmark"></a>' +
                         '</div>' +
@@ -582,8 +582,8 @@ function drawModal(json, a){
                     '<div class="modal-body">' +
                         '<div class="row">' +
                             '<div class="col-md-6">' +
-                                '<div class="image">' + drawModalGallery(json, json.data[a].id) + '</div>' +
-                                '<div>'+ drawModalFeatures(json, json.data[a].id) + '</div>' +
+                                '<div class="image">' + drawModalGallery(json, json[a].id) + '</div>' +
+                                '<div>'+ drawModalFeatures(json, json[a].id) + '</div>' +
                             '</div>' +
                             '<div class="col-md-6">' +
                                 '<section>' +
@@ -609,7 +609,7 @@ function drawModal(json, a){
                                 '<hr>' +
                                 '<section>' +
                                     '<h3>Last Review</h3>' +
-                                    '<div class="rating" data-rating="' + json.data[a].rating + '">' +
+                                    '<div class="rating" data-rating="' + json[a].rating + '">' +
                                         '<p>Curabitur odio nibh, luctus non pulvinar a, ultricies ac diam. Donec neque massa, viverra interdum eros ut, imperdiet </p>' +
                                     '</div>' +
                                 '</section>' +
@@ -627,10 +627,10 @@ function drawModal(json, a){
 
     function drawModalGallery(json, id){
         var gallery = '<div class="owl-carousel gallery">';
-        $.each(json.data, function(a) {
-            if( json.data[a].id == id ) {
-                for( var i=0; i<json.data[a].gallery.length; i++ ){
-                    gallery += '<img src="' + json.data[a].gallery[i] + '">';
+        $.each(json, function(a) {
+            if( json[a].id == id ) {
+                for( var i=0; i<json[a].gallery.length; i++ ){
+                    gallery += '<img src="' + json[a].path + '">';
                 }
             }
         });
@@ -639,17 +639,17 @@ function drawModal(json, a){
     }
 
     function drawModalFeatures(json, id){
-        if( json.data[a].features ){
+        if( json[a].features ){
             var features =
                 '<div class="features expandable-content collapsed" id="modal-features">' +
                     '<div class="content">' +
                         '<h3>Features</h3>' +
                         '<ul class="bullets">';
-                            $.each(json.data, function(a) {
-                                if( json.data[a].id == id ) {
-                                    if( json.data[a].features ){
-                                        for( var i=0; i<json.data[a].features.length; i++ ){
-                                            features += '<li>' + json.data[a].features[i] + '</li>';
+                            $.each(json, function(a) {
+                                if( json[a].id == id ) {
+                                    if( json[a].features ){
+                                        for( var i=0; i<json[a].features.length; i++ ){
+                                            features += '<li>' + json[a].features[i] + '</li>';
                                         }
                                     }
                                 }
@@ -692,10 +692,10 @@ function drawClusterer(map, newMarkers){
 }
 
 function centerMapToMarker(){
-    $.each(json.data, function(a) {
-        if( json.data[a].id == id ) {
-            var _latitude = json.data[a].latitude;
-            var _longitude = json.data[a].longitude;
+    $.each(json, function(a) {
+        if( json[a].id == id ) {
+            var _latitude = json[a].lat;
+            var _longitude = json[a].lng;
             mapCenter = new google.maps.LatLng(_latitude,_longitude);
             map.setCenter(mapCenter);
         }

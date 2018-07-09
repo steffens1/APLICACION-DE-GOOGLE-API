@@ -1,3 +1,4 @@
+<?php require RUTA_APP.'/views/inc/header.php'; ?>
 <!-- Outer Wrapper-->
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
@@ -111,26 +112,28 @@
 </div>
 <!-- end Outer Wrapper-->
 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBPETPyNZJpHyGdrJ0W7V2HUL5C183gJw0"></script>
+
 <script>
-    var _latitude  = 51.541216;
-    var _longitude = -0.095678;
-    var jsonPath   = 'json/items.json.txt';
-    
-    // Load JSON data and create Google Maps
-    $.getJSON(jsonPath) 
-        .done(function(json) {
-            createHomepageGoogleMap(_latitude,_longitude,json);
-        })
-        .fail(function( jqxhr, textStatus, error ) {
-            console.log(error);
+ 
+        var _latitude  = -15.832706;
+        var _longitude =  -70.022922;
+        var jsonPath   = 'inicio/consulta';
+        
+        // Load JSON data and create Google Maps
+        $.getJSON(jsonPath) 
+            .done(function(json) {
+                createHomepageGoogleMap(_latitude,_longitude,json);
+            })
+            .fail(function( jqxhr, textStatus, error ) {
+                console.log(error);
+            });
+
+        // Set if language is RTL and load Owl Carousel
+        $(window).load(function(){
+            var rtl = false; // Use RTL
+            initializeOwl(rtl);
         });
-
-    // Set if language is RTL and load Owl Carousel
-    $(window).load(function(){
-        var rtl = false; // Use RTL
-        initializeOwl(rtl);
-    });
-
-    autocomplete();
-
 </script>
+
+<?php require RUTA_APP.'/views/inc/footer.php'; ?>

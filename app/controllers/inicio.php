@@ -1,6 +1,5 @@
 <?php 
 class inicio extends Controlador{
- 
     private $inicios;
      public function __construct()
      {
@@ -8,7 +7,12 @@ class inicio extends Controlador{
      }
      public function index()
      {
-         $this->vista('inicio');    
+        $this->vista('inicio');
      }
-     
+     public function consulta()
+     {
+        $datos =  $this->inicios->obtenerTodo();
+        
+        echo json_encode($datos, true);
+     }
 }

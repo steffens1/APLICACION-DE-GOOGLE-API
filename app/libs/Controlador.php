@@ -11,11 +11,9 @@
         {
             if(file_exists('../app/views/paginas/'.$vista.'.php')){
 
-                require RUTA_APP.'/views/inc/header.php';
+                //require RUTA_APP.'/views/inc/header.php';
                 require_once '../app/views/paginas/'.$vista.'.php';
-                require RUTA_APP.'/views/inc/footer.php'; 
-                //return new $vista;
-            
+                //require RUTA_APP.'/views/inc/footer.php';            
             }
             else{
                 die("PAGINA NO EXISTE");
