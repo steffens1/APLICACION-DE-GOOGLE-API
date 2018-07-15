@@ -124,7 +124,7 @@
             .done(function(json) {
                 CrearPaginaInicioGoogleMap(_latitude,_longitude,json);
             })
-            .fail(function( jqxhr, textStatus, error ) {
+            .fail(function( jqxhr, textStatus, error ){
                 console.log(error);
             });
 

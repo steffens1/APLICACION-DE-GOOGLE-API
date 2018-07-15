@@ -13,6 +13,8 @@ class inicio_m{
         INNER JOIN galeria as c  
         on a.id = c.inmueble_id
         GROUP by a.id");
-         return $this->db->registros();
+        return $this->db->registros();
+    
     }
+
 }
