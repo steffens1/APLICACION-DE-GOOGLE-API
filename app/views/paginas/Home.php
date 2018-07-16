@@ -1,4 +1,4 @@
-<?php require RUTA_APP.'/views/inc/header.php'; ?>
+
 <!-- Outer Wrapper-->
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
@@ -7,17 +7,18 @@
             <div class="header">
                 <div class="wrapper">
                     <div class="brand">
-                        <a href="inicio"><img src="img/logo.png" alt="logo"></a>
+                        <a href="Home"><img src="img/logo.png" alt="logo"></a>
                     </div>
+
                     <nav class="navigation-items">
                         <div class="wrapper">
                             <ul class="main-navigation navigation-top-header"></ul>
                             <ul class="user-area">
-                                <li><a href="sign-in.php">Iniciar Sesion</a></li>
+                                <li><a href="Sesion/Login">Iniciar Sesion</a></li>
                                 <li><a href="register.php"><strong>Registrar</strong></a></li>
                             </ul>
                             <a href="submit.php" class="submit-item">
-                                <div class="content"><span>Alquilar</span></div>
+                                <div class="    content"><span>Alquilar</span></div>
                                 <div class="icon">
                                     <i class="fa fa-plus"></i>
                                 </div>
@@ -111,8 +112,6 @@
 </div>
 <!-- end Outer Wrapper-->
 
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBPETPyNZJpHyGdrJ0W7V2HUL5C183gJw0"></script>
-
 <script>
  
         var _latitude  = -15.832706;
@@ -134,5 +133,3 @@
             initializeOwl(rtl);
         });
 </script>
-
-<?php require RUTA_APP.'/views/inc/footer.php'; ?>

@@ -1,6 +1,5 @@
 <?php
-    class Home extends Controlador{
-        
+    class Home extends Controlador{    
         private $home;
         public function __construct(){
             

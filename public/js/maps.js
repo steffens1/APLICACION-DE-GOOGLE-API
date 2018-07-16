@@ -442,7 +442,7 @@ function itemDetailMap(json){
 function simpleMap(_latitude, _longitude, draggableMarker){
     var mapCenter = new google.maps.LatLng(_latitude, _longitude);
     var mapOptions = {
-        zoom: 14,
+        zoom: 18,
         center: mapCenter,
         disableDefaultUI: true,
         scrollwheel: false,
@@ -461,7 +461,6 @@ function simpleMap(_latitude, _longitude, draggableMarker){
         '<div class="map-marker">' +
             '<div class="icon"></div>' +
         '</div>';
-
     // Create marker on the map ------------------------------------------------------------------------------------
 
     var marker = new RichMarker({

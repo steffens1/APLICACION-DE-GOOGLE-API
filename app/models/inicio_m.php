@@ -8,7 +8,7 @@ class inicio_m{
     public function obtenerTodo()
     {
         $this->db->query("
-            SELECT  *
+        SELECT  *
         FROM  inmueble as a
         INNER JOIN galeria as c  
         on a.id = c.inmueble_id
