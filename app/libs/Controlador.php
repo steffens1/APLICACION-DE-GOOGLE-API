@@ -7,7 +7,7 @@
             return new $modelo;
         }
 
-        public function vista($vista , $dato=[], $dato1=[], $dato2=[]  , $dato3=[])
+        public function vista($vista , $dato=[], $dato1=[] , $dato2=[])
         {
             if(file_exists('../app/views/paginas/'.$vista.'.php')){
 

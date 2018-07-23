@@ -5,16 +5,35 @@ class inicio_m{
     {
         $this->db= new Base ;
     }
-    public function obtenerTodo()
+    public function obtenerInm()
     {
         $this->db->query("
-        SELECT  *
-        FROM  inmueble as a
-        INNER JOIN galeria as c  
-        on a.id = c.inmueble_id
-        GROUP by a.id");
+        SELECT  *  FROM  inmueble");
         return $this->db->registros();
-    
+    }
+    public function obtenerUsr()
+    {
+        $this->db->query("
+        SELECT  *  FROM  usuario");
+        return $this->db->registros();
+    }
+    public function obtenerGal()
+    {
+        $this->db->query("
+        SELECT  *  FROM  galeria");
+        return $this->db->registros();
+    }
+    public function obtenerSer()
+    {
+        $this->db->query("
+        SELECT  *  FROM  servicios");
+        return $this->db->registros();
     }
 
+    public function obtenerHab()
+    {
+        $this->db->query("
+        SELECT  *  FROM  habitaciones");
+        return $this->db->registros();
+    }
 }

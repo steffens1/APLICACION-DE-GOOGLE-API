@@ -12,9 +12,9 @@ function DibujaCajaInfo(category, infoboxContent, json, i){
         else                        { type = '' }
     if(json[i].nombre)          { var title = json[i].nombre }
         else                        { title = '' }
-    if(json[i].location)       { var location = json[i].location }
+    if(json[i].direccion)       { var location = json[i].direccion }
         else                        { location = '' }
-    if(json[i].path)     { var gallery = json[i].path}
+    if(json[i].galeria[0])     { var gallery = json[i].galeria[0]}
         else                        { path = '../img/default-item.jpg' }
 
     var ibContenedor = '';
@@ -38,10 +38,9 @@ function DibujaCajaInfo(category, infoboxContent, json, i){
                         '<i class="fa fa-angle-right"></i>' +
                     '</div>' +
                 '</a>' +
-                '<img src="' + gallery +  '">' +
+                '<img src="'+ gallery + '">' +
             '</div>' +
         '</div>' +
     '</div>';
-
     return ibContenedor;
 }

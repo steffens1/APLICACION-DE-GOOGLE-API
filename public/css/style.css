@@ -7088,3 +7088,12 @@ body.navigation-top-header .header .wrapper .toggle-navigation {
     opacity: 0;
   }
 }
+
+
+#longitud-ingresar{
+  display: none;
+}
+
+#latitud-ingresar{
+  display: none;
+}

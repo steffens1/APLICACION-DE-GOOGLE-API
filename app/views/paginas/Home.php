@@ -36,7 +36,7 @@
             </div>
         <!-- end Navigation-->
 
-        <!-- Page Canvas-->
+        <!-- Page Canvas--> 
         <div id="page-canvas">
 
             <!--Off Canvas Navigation-->
@@ -62,27 +62,23 @@
                                 <div class="line"></div>
                             </div>
                         </div>
-                    
                         <!--/.toggle-navigation-->
                         <div id="map" class="has-parallax"></div>
                         <!--/#map-->
                         <!--barra de busqueda-->
-                        <div class="search-bar horizontal">
-                            <form class="main-search border-less-inputs" role="form" method="post">
 
-                                <div class="input-row">
-                                    <div class="form-group">
-                                        <div class="input-group location">
-                                            <input type="text" class="form-control" id="location" placeholder="ingresa una direccion">
-                                        </div>
+                        <div class="search-bar horizontal"  >
+                                <div  class="main-search border-less-inputs" >
+                                    <div class="row ">
+                                            <div  class ="input-group location col-md-12">
+                                                <input type="text" class="form-control" id="location-usr" placeholder="ingresa una direccion">
+                                                <button  style = "position:relative ; top:0px; left:30px;" type="submit" class="btn btn-default"><i class="fa fa-search" id="search-location" ></i></button>
+                                            </div>
+                                            
                                     </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search" id="search-location"></i></button>
-                                    </div>
+                                    <!-- /.input-row -->
                                 </div>
-                                <!-- /.input-row -->
-                            </form>
-                            <!-- /.main-search -->
+                                <!-- /.main-search -->
                         </div>
                         
                         <!-- /.search-bar -->
@@ -113,7 +109,9 @@
 <!-- end Outer Wrapper-->
 
 <script>
- 
+    
+    
+      $(document).ready(function(){
         var _latitude  = -15.832706;
         var _longitude =  -70.022922;
         var jsonPath   = 'inicio/consulta';
@@ -121,7 +119,9 @@
         // Load JSON data and create Google Maps
         $.getJSON(jsonPath) 
             .done(function(json) {
+                   console.log(json); 
                 CrearPaginaInicioGoogleMap(_latitude,_longitude,json);
+                
             })
             .fail(function( jqxhr, textStatus, error ){
                 console.log(error);
@@ -132,4 +132,9 @@
             var rtl = false; // Use RTL
             initializeOwl(rtl);
         });
+       
+       // autoComplete();
+
+      })
+    
 </script>

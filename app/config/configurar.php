@@ -14,3 +14,5 @@
     define('RUTA_URL', 'http://localhost/BNB/');
 
     define('NOMBRE','_NOMBRE_');
+
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']."/bnb");

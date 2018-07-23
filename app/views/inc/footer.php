@@ -8,7 +8,8 @@
 <!--  registrar -->
 <!-- inciar sesion  -->
 <!-- enviar  -->
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyBPETPyNZJpHyGdrJ0W7V2HUL5C183gJw0"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVIDoPcGW-nEx3tPx4iH3VYETVgfMy-YU&libraries=places"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCVIDoPcGW-nEx3tPx4iH3VYETVgfMy-YU"></script>
 <script type="text/javascript" src="<?php echo RUTA_URL ?>js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="<?php echo RUTA_URL ?>js/before.load.js"></script>
 <script type="text/javascript" src="<?php echo RUTA_URL ?>js/jquery-migrate-1.2.1.min.js"></script>
