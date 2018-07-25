@@ -12,7 +12,7 @@
                     <div class="wrapper">
                         <ul class="main-navigation navigation-top-header"></ul>
                         <ul class="user-area">
-                            <li><a href="Registrar"><strong>Registrar</strong></a></li>
+                            <li><a href="<?php  RUTA_URL?>Registrar"><strong>Registrar</strong></a></li>
                         </ul>
                         <div class="toggle-navigation">
                             <div class="icon">

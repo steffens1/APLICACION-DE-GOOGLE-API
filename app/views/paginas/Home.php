@@ -7,29 +7,32 @@
             <div class="header">
                 <div class="wrapper">
                     <div class="brand">
-                        <a href="Home"><img src="img/logo.png" alt="logo"></a>
+                        <a href="Home"><img src="<?php echo RUTA_URL ?>img/logo.png" alt="logo"></a>
                     </div>
 
                     <nav class="navigation-items">
                         <div class="wrapper">
                             <ul class="main-navigation navigation-top-header"></ul>
                             <ul class="user-area">
-                                <li><a href="Sesion/Login">Iniciar Sesion</a></li>
-                                <li><a href="register.php"><strong>Registrar</strong></a></li>
+                                <li><a href="<?php  RUTA_URL?>Sesion/Login">
+                            <?php
+
+                                if($_SESSION['dni']){
+                                    echo $dato;
+                                }
+                                else{
+                                    echo "Iniciar Sesion";
+                                }
+
+                            ?>
+                            </a></li>
                             </ul>
-                            <a href="submit.php" class="submit-item">
-                                <div class="    content"><span>Alquilar</span></div>
+                            <a href="<?php echo RUTA_URL?>Publicar" class="submit-item">
+                                <div class="content"><span>Alquilar</span></div>
                                 <div class="icon">
                                     <i class="fa fa-plus"></i>
                                 </div>
                             </a>
-                            <div class="toggle-navigation">
-                                <div class="icon">
-                                    <div class="line"></div>
-                                    <div class="line"></div>
-                                    <div class="line"></div>
-                                </div>
-                            </div>
                         </div>
                     </nav>
                 </div>
@@ -104,7 +107,7 @@
         </div>
         <!-- end Page Canvas-->
     </div>
-    <!-- end Inner Wrapper --
+    <!-- end Inner Wrapper -->
 </div>
 <!-- end Outer Wrapper-->
 
@@ -114,10 +117,10 @@
       $(document).ready(function(){
         var _latitude  = -15.832706;
         var _longitude =  -70.022922;
-        var jsonPath   = 'inicio/consulta';
+        var jsonPath   = '<?php  echo RUTA_URL?>Home/consulta';
         
         // Load JSON data and create Google Maps
-        $.getJSON(jsonPath) 
+        $.getJSON(jsonPath)     
             .done(function(json) {
                    console.log(json); 
                 CrearPaginaInicioGoogleMap(_latitude,_longitude,json);

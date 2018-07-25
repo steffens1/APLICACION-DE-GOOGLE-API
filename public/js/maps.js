@@ -25,9 +25,9 @@ function DibujaCajaInfo(category, infoboxContent, json, i){
                 '<div class="item-specific">' + drawItemSpecific(category, json, i) + '</div>' +
                 '<div class="overlay">' +
                     '<div class="wrapper">' +
-                        '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Quick View</a>' +
+                        '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Vista Previa</a>' +
                         '<hr>' +
-                        '<a href="' + url +  '" class="detail">Go to Detail</a>' +
+                        '<a href="' + url +  '" class="detail">Mas detalles </a>' +
                     '</div>' +
                 '</div>' +
                 '<a href="' + url +  '" class="description">' +
@@ -365,7 +365,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
             var category = json[i].category;
             infoboxContent.innerHTML = DibujaCajaInfo(category, infoboxContent, json, i);
 
-            // Create new markers ------------------------------------------------------------------------------------------
+            // creandi nuevo marcadores ------------------------------------------------------------------------------------------
 
             newMarkers[i].infobox = new InfoBox(infoboxOptions);
 
@@ -649,7 +649,8 @@ buscar();
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function itemDetailMap(json){
-    var mapCenter = new google.maps.LatLng(json.latitude,json.longitude);
+    var mapCenter = new google.maps.LatLng(json.lat,json.lng);
+    //console.log(json.lat);
     var mapOptions = {
         zoom: 14,
         center: mapCenter,
@@ -660,6 +661,7 @@ function itemDetailMap(json){
         zoomControl: false,
         draggable: true
     };
+
     var mapElement = document.getElementById('map-detail');
     var map = new google.maps.Map(mapElement, mapOptions);
     if( json.type_icon ) var icon = '<img src="' + json.type_icon +  '">';
@@ -678,7 +680,7 @@ function itemDetailMap(json){
     // Create marker on the map ------------------------------------------------------------------------------------
 
     var marker = new RichMarker({
-        position: new google.maps.LatLng( json.latitude, json.longitude ),
+        position: new google.maps.LatLng( json.lat, json.lng ),
         map: map,
         draggable: false,
         content: markerContent,
@@ -689,7 +691,7 @@ function itemDetailMap(json){
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Simple Google Map (contat, submit...)
+// mapa simple (Publicar ...)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function simpleMap(_latitude, _longitude, draggableMarker){
@@ -767,7 +769,7 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
                             '<span>' + json[a].type + '</span>' +
                         '</div>' +
                         '<div class="rating" data-rating="' + json[a].rating + '"></div>' +
-                    '</div>' +
+                        '</div>' +
                 '</div>' +
             '</div>' +
         '</li>'

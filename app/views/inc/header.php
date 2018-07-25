@@ -12,7 +12,7 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="<?php echo RUTA_URL ?>fonts/font-awesome.css" rel="stylesheet" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<?php echo RUTA_URL ?>bootstrap/css/bootstrap.css" type="text/css">
     <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/bootstrap-select.min.css" type="text/css">
     <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/owl.carousel.css" type="text/css">
@@ -25,8 +25,6 @@
     <!--enviar-->
     <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/jquery.ui.timepicker.css" type="text/css">
     <!-- ultimo agregado -->
-    <link rel="stylesheet" href="<?php echo RUTA_URL ?>css/styles.css">
-
     <title> <?php echo NOMBRE;?></title>
 </head>
 <body onunload="" class="map-fullscreen page-homepage navigation-off-canvas" id="page-top">

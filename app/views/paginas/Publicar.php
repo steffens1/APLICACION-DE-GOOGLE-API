@@ -6,7 +6,7 @@
         <div class="header">
             <div class="wrapper">
                 <div class="brand">
-                    <a href="index-directory.html"><img src="<?php echo RUTA_URL?>img/logo.png" alt="logo"></a>
+                    <a href="<?php echo RUTA_URL?>"><img src="<?php echo RUTA_URL?>img/logo.png" alt="logo"></a>
                 </div>
                 <nav class="navigation-items">
                     <div class="wrapper">

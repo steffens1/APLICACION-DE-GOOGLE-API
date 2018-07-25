@@ -13,8 +13,8 @@
                             <li><a href="<?php echo RUTA_URL?>Sesion/Perfil"><strong> <?php echo $dato->nombre ?></strong></a></li>
                             <li><a href="<?php echo RUTA_URL?>Sesion/Items">Mis Items</a></li>
                         </ul>
-                        <a href="<?php echo RUTA_URL?>Items" class="submit-item">
-                            <div class="content"><span>Publica</span></div>
+                        <a href="<?php echo RUTA_URL?>Publicar" class="submit-item">
+                            <div class="content"><span>Publicar</span></div>
                             <div class="icon">
                                 <i class="fa fa-plus"></i>
                             </div>
