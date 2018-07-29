@@ -29,7 +29,6 @@ class Publicar_m {
         $longitud=$_POST['longitudx'];
         $servicios=$_POST['features'];  
         $descripcion=$_POST['descripcion'];
-
         //foreach($_FILES['fotos']['tmp_name'] as $file=>$tmp_name){
             $ruta =  ROOT."/public/img/items/";
             $nombreImg ="image".date("dHis").".".pathinfo($_FILES['fotos']['name'], PATHINFO_EXTENSION);
@@ -43,7 +42,7 @@ class Publicar_m {
 
         
         $sql="INSERT INTO inmueble(usuario_dni , nombre , location , lat , lng ,precio , category, descripcion, fech_construct) 
-            VALUES ('".$dni."', '".$nombre."' , '".$direccion."','".$latitud."','".$longitud."','".$precio."','".$categoria."','".$descripcion."' , '".$fecha."');"; 
+            VALUES ('".$dni."', '".$nombre."' , '".$direccion."','".$latitud."','".$longitud."','".$precio."','".$categoria."','".$descripcion."' , '".$fecha."')"; 
         $this->db->query($sql);
         $this->db->execute();
 

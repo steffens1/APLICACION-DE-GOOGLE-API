@@ -15,4 +15,4 @@
 
     define('NOMBRE','_NOMBRE_');
 
-    define('ROOT', $_SERVER['DOCUMENT_ROOT']."/bnb");
+    define('ROOT', $_SERVER['DOCUMENT_ROOT']."/BNB");

@@ -1,4 +1,5 @@
 
+<body onunload="" class="map-fullscreen page-homepage " id="page-top">
 <!-- Outer Wrapper-->
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
@@ -14,17 +15,21 @@
                         <div class="wrapper">
                             <ul class="main-navigation navigation-top-header"></ul>
                             <ul class="user-area">
-                                <li><a href="<?php  RUTA_URL?>Sesion/Login">
-                            <?php
-
-                                if($_SESSION['dni']){
-                                    echo $dato;
+                                <li><a href="<?php
+                                if(!empty($_SESSION['dni'])){
+                                      echo RUTA_URL.'Sesion/Perfil ">';
                                 }
+                                else{
+                                    echo  RUTA_URL.'Sesion">';
+                                } 
+
+                                if(!empty($_SESSION['dni'])){
+                                    echo $dato;
+                                    }
                                 else{
                                     echo "Iniciar Sesion";
                                 }
-
-                            ?>
+                                ?>
                             </a></li>
                             </ul>
                             <a href="<?php echo RUTA_URL?>Publicar" class="submit-item">
@@ -57,7 +62,6 @@
             <div class="map-canvas list-width-30">
             <!-- Map -->
                 <div class="map">
-
                         <div class="toggle-navigation">
                             <div class="icon">
                                 <div class="line"></div>
@@ -70,20 +74,22 @@
                         <!--/#map-->
                         <!--barra de busqueda-->
 
-                        <div class="search-bar horizontal"  >
-                                <div  class="main-search border-less-inputs" >
-                                    <div class="row ">
-                                            <div  class ="input-group location col-md-12">
-                                                <input type="text" class="form-control" id="location-usr" placeholder="ingresa una direccion">
-                                                <button  style = "position:relative ; top:0px; left:30px;" type="submit" class="btn btn-default"><i class="fa fa-search" id="search-location" ></i></button>
+                        <div class="search-bar horizontal">
+                                <form class="main-search border-less-inputs"  action="" method="get" onsubmit="return updateTable();">
+                                    <div class="input-row">
+                                            <div class="form-group">
+                                                    <div class="input-group location ">
+                                                            <input type="text" class="form-control" id="location-usr" placeholder="ingresa una direccion">
+                                                    </div>
                                             </div>
-                                            
-                                    </div>
-                                    <!-- /.input-row -->
-                                </div>
+                                            <div class="form-group">
+                                                <button   onClick="buscar();" class="btn btn-default"><i class="fa fa-search" id="search-location" ></i></button>
+                                                <button  onClick="localizar();" class="btn btn-default" id ="btn-localizar"><i class="fa fa-map-marker" id="auto-localizar" ></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 <!-- /.main-search -->
-                        </div>
-                        
+                            </div>
                         <!-- /.search-bar -->
                     </div>
                     <!-- end Map -->
@@ -94,7 +100,6 @@
                                 <h3>Results</h3>
                             </header>
                             <ul class="results list">
-
                             </ul>
                         </div>
                         <!--results-->
@@ -122,7 +127,7 @@
         // Load JSON data and create Google Maps
         $.getJSON(jsonPath)     
             .done(function(json) {
-                   console.log(json); 
+                   //console.log(json); 
                 CrearPaginaInicioGoogleMap(_latitude,_longitude,json);
                 
             })
@@ -136,8 +141,11 @@
             initializeOwl(rtl);
         });
        
-       // autoComplete();
+         autoComplete();
 
       })
-    
+      
+      function updateTable(){
+          return false;
+      }
 </script>

@@ -1,3 +1,4 @@
+<body onunload="" class="page-subpage page-my-items " id="page-top">
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
     <div id="inner-wrapper">
@@ -11,7 +12,7 @@
                     <div class="wrapper">
                         <ul class="user-area">
                             <li><a href="<?php echo RUTA_URL?>Sesion/Perfil"><strong> <?php echo $dato->nombre ?></strong></a></li>
-                            <li><a href="<?php echo RUTA_URL?>Sesion/Items">Mis Items</a></li>
+                            <li><a href="<?php echo RUTA_URL?>Sesion/myItems">Mis Items</a></li>
                         </ul>
                         <a href="<?php echo RUTA_URL?>Publicar" class="submit-item">
                             <div class="content"><span>Publicar</span></div>
@@ -50,7 +51,7 @@
                                     <div class="item list admin-view">
                                         <div class="image">
                                             <div class="quick-view" data-toggle="modal" data-target="#modal-bar"><i class="fa fa-eye"></i><span>Quick View</span></div>
-                                            <a href="item-detail.html">
+                                            <a href="<?php echo RUTA_URL.'Item/detalle/'.$aux->id ?>">
                                                 <div class="icon">
                                                     <i class="fa fa-thumbs-up"></i>
                                                 </div>
@@ -59,7 +60,7 @@
                                         </div>
 
                                         <div class="wrapper">
-                                            <a href="item-detail.html"><h3><?php echo $aux->nombre; ?></h3></a>
+                                            <a href="<?php echo RUTA_URL.'Item/detalle/'.$aux->id ?>"><h3><?php echo $aux->nombre; ?></h3></a>
                                             <figure><?php echo $aux->location ?></figure>
                                             <div class="info">
                                                 <div class="type">
@@ -68,15 +69,6 @@
                                                 </div>
                                                 <div class="rating" data-rating="<?php echo $aux->rainting ;?>"></div>
                                             </div>
-                                        </div>
-
-                                        <div class="description">
-                                            <ul class="list-unstyled actions">
-                                                <li><a href="#"><i class="fa fa-pencil"></i></a></li>
-                                                <li><a href="#" class="hide-item"><i class="fa fa-eye"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-trash"></i></a></li>
-                                            </ul>
-                                        
                                         </div>
 
                                         <div class="ribbon approved">

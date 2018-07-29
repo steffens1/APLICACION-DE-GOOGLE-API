@@ -11,31 +11,38 @@ class Sesion extends Controlador{
         $this->vista('Login');
     }
 
+    public function index()
+    {
+        $this->vista('Login');
+    }
     public function validar()
-    { 
-        session_start();
-        if(!$_SESSION['dni']){
-            if($this->Sesions->validar()){
-                $_SESSION['dni'] = $this->Sesions->GetUser();
-            }
+    {  
+        if(empty($_SESSION['dni'])){
+           print_r($this->Sesions->validar());
+           header("location:".RUTA_URL."Sesion/Perfil");
+        }
+        else
+        {
+            $this->vista('Perfil');
         }     
     }
 
     public function Perfil()
-    {
-        $this->validar();
-        if($_SESSION['dni']){
+    {   
+        if(!empty($_SESSION['dni'])){
             $data = $this->Sesions->Perfil();
             $this->vista('Perfil', $data);
         }
         else{
-            $this->vista('Login');
-        }   
+            header("location:".RUTA_URL."Sesion/Login");
+        }
+
     }
+
     public function Actualiza()
     {
-        $this->validar();
-        if($_SESSION['dni']){
+
+        if(!empty($_SESSION['dni'])){
             $data = $this->Sesions->Actualiza();
             $data = $this->Sesions->Perfil();
             $this->vista('Perfil', $data);
@@ -44,10 +51,11 @@ class Sesion extends Controlador{
             $this->vista('Login');
         }
     }
+
     public function myItems()
     {
-        session_start();
-        if($_SESSION['dni']){
+        
+        if(!empty($_SESSION['dni'])){
             
             $data = $this->Sesions->Perfil();
             $data1= $this->Sesions->TodasCasas();
@@ -56,6 +64,14 @@ class Sesion extends Controlador{
         else{
             $this->vista('Login');
         }
+    }
+
+    public function close()
+    {
+        
+        session_destroy();
+        header("location:".RUTA_URL."Sesion/Login");
+
     }
 
 }       

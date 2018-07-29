@@ -1,4 +1,4 @@
-<!-- Outer Wrapper-->
+<body onunload="" class="page-subpage page-profile " id="page-top"><!-- Outer Wrapper-->
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
     <div id="inner-wrapper">
@@ -13,6 +13,7 @@
                         <ul class="user-area">
                             <li><a href="<?php echo RUTA_URL?>Sesion/Perfil"><strong> <?php echo $dato->nombre ?></strong></a></li>
                             <li><a href="<?php echo RUTA_URL?>Sesion/myItems">Mis Items</a></li>
+                            <li><a href="<?php echo RUTA_URL?>Sesion/close">Cerrar Sesion</a></li>
                         </ul>
                         <a href="<?php echo RUTA_URL?>Publicar" class="submit-item">
                             <div class="content"><span>Publicar</span></div>
@@ -60,14 +61,14 @@
                                                 <div class="col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="name">Nombre</label>
-                                                        <input type="text" class="form-control" id="name" name="nombre" value="<?php echo $dato->nombre ?>">
+                                                        <input type="text" class="form-control" id="name" required name="nombre" value="<?php echo $dato->nombre ?>">
                                                     </div>
                                                     <!--/.form-group-->
                                                 </div>
                                                 <div class="col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="name">Apellido</label>
-                                                        <input type="text" class="form-control" id="name" name="apellido" value="<?php echo $dato->apellido ?>">
+                                                        <input type="text" class="form-control" id="name" name="apellido" required  value="<?php echo $dato->apellido ?>">
                                                     </div>
                                                     <!--/.form-group-->
                                                 </div>
@@ -75,7 +76,7 @@
                                                 <div class="col-md-4 col-sm-4">
                                                     <div class="form-group">
                                                         <label for="email">Email</label>
-                                                        <input type="email" class="form-control" id="email" name="correo" value="<?php echo $dato->correo ?>">
+                                                        <input type="email" class="form-control" id="email" name="correo"  required value="<?php echo $dato->correo ?>">
                                                     </div>
                                                     <!--/.form-group-->
                                                 </div>
@@ -85,7 +86,7 @@
                                                 <div class="col-md-6 col-sm-6">
                                                     <div class="form-group">
                                                         <label for="mobile">Telefono</label>
-                                                        <input type="text" class="form-control" id="mobile" name="telefono" pattern="\d*" value="<?php echo $dato->telefono ?>">
+                                                        <input type="text" class="form-control" id="mobile" required  name="telefono" pattern="\d*" value="<?php echo $dato->telefono ?>">
                                                     </div>
                                                     <!--/.form-group-->
                                                 </div>
@@ -95,19 +96,19 @@
                                             <h3><i class="fa fa-map-marker"></i>Direccion</h3>
                                             <div class="form-group">
                                                 <label for="state">Estado</label>
-                                                <input type="text" class="form-control" id="state" name="estado" value="<?php echo $dato->estado ?>">
+                                                <input type="text" class="form-control" id="state" required name="estado" value="<?php echo $dato->estado ?>">
                                             </div>
                                             <!--/.form-group-->
                                             <div class="form-group">
                                                 <label for="city">Ciudad</label>
-                                                <input type="text" class="form-control" id="city" name="ciudad" value="<?php echo $dato->ciudad ?>">
+                                                <input type="text" class="form-control" id="city"  required name="ciudad" value="<?php echo $dato->ciudad ?>">
                                             </div>
                                             <!--/.form-group-->
                                             <div class="row">
                                                 <div class="col-md-8 col-sm-8">
                                                     <div class="form-group">
                                                         <label for="street">Direccion</label>
-                                                        <input type="text" class="form-control" id="street" name="direccion" value="<?php echo $dato->direccion ?>">
+                                                        <input type="text" class="form-control" required  id="street" name="direccion" value="<?php echo $dato->direccion ?>">
                                                     </div>
                                                     <!--/.form-group-->
                                                 </div>
@@ -118,7 +119,7 @@
                                             <div class="form-group">
             
                                                 <div class="form-group">
-                                                    <textarea class="form-control" id="about-me" rows="3" name="acerca_yo" required>
+                                                    <textarea class="form-control" id="about-me" required  rows="3" name="acerca_yo" required>
                                                     <?php echo $dato->acerca_yo ?>
                                                     </textarea>
                                                 </div>
@@ -135,32 +136,7 @@
                                 </div>
                             </form>
                         </div>
-                        <!--Password-->
-                        <div class="col-md-3 col-sm-9">
-                            <h3><i class="fa fa-asterisk"></i>Cambiar Contraseña</h3>
-                            <form class="framed" id="form-password" role="form" method="post" action="<?php echo RUTA_URL?>Sesion/ActualizaContrasena" >
-                                <div class="form-group">
-                                    <label for="current-password">Contraseña actual</label>
-                                    <input type="password" class="form-control" id="current-password" name="current-password">
-                                </div>
-                                <!--/.form-group-->
-                                <div class="form-group">
-                                    <label for="new-password">Nueva Contraseñ4</label>
-                                    <input type="password" class="form-control" id="new-password" name="new-password">
-                                </div>
-                                <!--/.form-group-->
-                                <div class="form-group">
-                                    <label for="confirm-new-password">Confirma Nueva Contraseña</label>
-                                    <input type="password" class="form-control" id="confirm-new-password" name="confirm-new-password">
-                                </div>
-                                <!--/.form-group-->
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-default">Cambia Contraseña</button>
-                                </div>
-                                <!-- /.form-group -->
-                            </form>
-                        </div>
-                        <!-- /.col-md-3-->
+
                     </div>
                 </section>
             </div>

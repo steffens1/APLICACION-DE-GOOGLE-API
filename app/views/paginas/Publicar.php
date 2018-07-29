@@ -1,4 +1,6 @@
+<body onunload="" class="page-subpage page-submit " id="page-top">
 <!-- Outer Wrapper-->
+
 <div id="outer-wrapper">
     <!-- Inner Wrapper -->
     <div id="inner-wrapper">
@@ -12,7 +14,7 @@
                     <div class="wrapper">
                         <ul class="main-navigation navigation-top-header"></ul>
                         <ul class="user-area">
-                            <li><a href="sign-in.html"><?php echo $dato->nombre ?></a></li>
+                            <li><a href="<?php echo RUTA_URL?>Sesion/Perfil"><?php echo $dato->nombre ?></a></li>
                         </ul>
                     </div>
                 </nav>
@@ -118,7 +120,7 @@
                                     <div class="row">
                                         <div class="col-md-4 col-sm-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="latitud-ingresar" name="latitudx">
+                                                <input type="text" class="form-control" id="latitudx" name="latitudx">
                                             </div>
                                         </div>
                                         <!--/.col-md-4-->
@@ -126,7 +128,7 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="row">
                                                     <div class="form-group">
-                                                        <input type="text" class="form-control" id="longitud-ingresar" name="longitudx">
+                                                        <input type="text" class="form-control" id="longitudx" name="longitudx">
                                                 </div>
                                             </div>
                                         </div>
@@ -137,14 +139,14 @@
                                 <section>
                                     <h3>Servicios</h3>
                                     <ul class="list-unstyled checkboxes">
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="1">Cable</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="2">Acepta tarjeta</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="3">Wi-Fi</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="4">Piscina</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="5">Saloon</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="6">Limpieza</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="7">Terrazas</label></div></li>
-                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="8">Comida</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Cable">Cable</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Acepta tarjeta">Acepta tarjeta</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Wi-Fi">Wi-Fi</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Piscina">Piscina</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Saloon">Saloon</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Limpieza">Limpieza</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Terrazas">Terrazas</label></div></li>
+                                        <li><div class="checkbox"><label><input type="checkbox" name="features[]" value="Comida">Comida</label></div></li>
                                     </ul>
                                 
                                 </section>
@@ -196,11 +198,9 @@
 
 
 <script>
-
    $(window).load(function(){
         var direccion ; var resul;
         var dir;
-            
             $.ajax({
                 url: "Publicar/location",
                 success: function(result){
@@ -219,7 +219,6 @@
                 }
             });
       });
-
       function redibujar(){
             var direccion= $("#street").val() + " " + $("#city").val(); 
             console.log(direccion);
@@ -238,5 +237,7 @@
 
         }
       autoComplete();
+
+      
 
 </script>

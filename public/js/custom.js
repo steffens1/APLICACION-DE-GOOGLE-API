@@ -1,6 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // jQuery
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var url = "http://localhost/BNB/";
+
 var mapStyles = [
     {
       "elementType": "geometry",
@@ -215,7 +218,7 @@ $(document).ready(function($) {
         $('#page-canvas').css( 'margin-top',$('.header').height() );
     }
 
-    rating();
+    //rating();
 
     setInputsWidth();
 
@@ -223,11 +226,12 @@ $(document).ready(function($) {
 
     $('.quick-view, .results .item').live('click',  function(){
         var id = $(this).attr('id');
+        console.log("hola id " + id);
         quickView(id);
         return false;
     });
 
-    // Scrollbar on "Results" section
+    //seccion resultados
 
     if( $('.items-list').length > 0 ){
         $(".items-list").mCustomScrollbar({
@@ -235,7 +239,7 @@ $(document).ready(function($) {
         });
     }
 
-    // Bootstrap tooltip
+ 
 
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
@@ -253,7 +257,7 @@ $(document).ready(function($) {
         });
     }
 
-//  Bootstrap Select ---------------------------------------------------------------------------------------------------
+// ---------------------------------------------------------------------------------------------------
 
     var select = $('select');
     if (select.length > 0 ){
@@ -277,7 +281,7 @@ $(document).ready(function($) {
         }, 100);
     });
 
-//  Expand content on click --------------------------------------------------------------------------------------------
+//  mostrar contenido click --------------------------------------------------------------------------------------------
 
     $('.expand-content').live('click',  function(e){
         e.preventDefault();
@@ -307,12 +311,8 @@ $(document).ready(function($) {
         });
     });
 
-// Set width for inputs in horizontal search bar -----------------------------------------------------------------------
 
-    $( "#redefine-search-form" ).load( "external/_search-bar.html", function() {
-        setInputsWidth();
-        //autoComplete();
-    });
+
 
 //    if( $('#location').length ){
 //        autoComplete();
@@ -531,8 +531,8 @@ function setInputsWidth(){
     }
 }
 
-// Autocomplete address ------------------------------------------------------------------------------------------------
-
+// aurtocompletar direccion no funciona  ------------------------------------------------------------------------------------------------
+/*
 function autoComplete(){
 
         var input = document.getElementById('location-usr') ;
@@ -558,8 +558,8 @@ function autoComplete(){
         });
     
 }
-
-// Rating --------------------------------------------------------------------------------------------------------------
+*/
+//puntuacion --------------------------------------------------------------------------------------------------------------
 
 function rating(element){
     var ratingElement =
@@ -608,10 +608,11 @@ function rating(element){
     });
 }
 
-// Owl Carousel in Modal Window ----------------------------------------------------------------------------------------
+// carrusel de imagenes ----------------------------------------------------------------------------------------
 
 function drawOwlCarousel(_rtl){
-    $.getScript( "js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
+    $.getScript(url + "js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
+        //console.log(textStatus);
         $(".image .gallery").owlCarousel({
             rtl: _rtl,
             items: 1,
@@ -659,14 +660,17 @@ function equalHeight(container){
     });
 }
 
-// Initialize Owl carousel ---------------------------------------------------------------------------------------------
+//inicializar owl carrusel ---------------------------------------------------------------------------------------------
 
 function initializeOwl(_rtl){
-    $.getScript( "js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
-        if ($('.owl-carousel').length > 0) {
-            if ($('.carousel-full-width').length > 0) {
+    $.getScript( url +"js/owl.carousel.min.js", function( data, textStatus, jqxhr ) {
+        console.log(textStatus);
+        if ($('.owl-carousel').length > 0){
+
+            if ($('.carousel-full-width').length > 0){
                 setCarouselWidth();
             }
+            
             $(".carousel.wide").owlCarousel({
                 rtl: _rtl,
                 items: 1,
@@ -674,6 +678,7 @@ function initializeOwl(_rtl){
                 nav: true,
                 navText: ["",""]
             });
+            
             $(".item-slider").owlCarousel({
                 rtl: _rtl,
                 items: 1,
@@ -757,10 +762,11 @@ function drawItemSpecific(category, json, a){
 function quickView(id){
     $.ajax({
         type: 'POST',
-        url: 'external/_modal.html',
-        data: id,
+        url: 'http://localhost/BNB/Item/modal/'+id,
+        data:id, 
         success: function (data) {
             // Create HTML element with loaded data
+            console.log(data);
             $('body').append(data);
         }
     });

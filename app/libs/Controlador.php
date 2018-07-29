@@ -19,5 +19,4 @@
                 die("PAGINA NO EXISTE");
             }
         }
-
     }

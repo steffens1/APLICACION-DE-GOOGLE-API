@@ -25,12 +25,12 @@ function DibujaCajaInfo(category, infoboxContent, json, i){
                 '<div class="item-specific">' + drawItemSpecific(category, json, i) + '</div>' +
                 '<div class="overlay">' +
                     '<div class="wrapper">' +
-                        '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Vista Previa</a>' +
+                        '<a href="" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Vista Previa</a>' +
                         '<hr>' +
                         '<a href="' + url +'/'+ id + '" class="detail">Mas Detalles</a>' +
                     '</div>' +
                 '</div>' +
-                '<a href="' + url +  '" class="description">' +
+                '<a href="'+ url +'/'+ id +'" class="description">' +
                     '<div class="meta">' +
                         price +
                         '<h2>' + title +  '</h2>' +

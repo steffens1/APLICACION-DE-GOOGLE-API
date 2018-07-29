@@ -82,7 +82,17 @@ class Home extends Controlador{
      }
      public function index()
      {   
-
-         $this->vista('Home');
+        if(!empty($_SESSION['dni'])){
+            $usuario =  $this->inicios->obtenerUsr();
+            foreach($usuario as $aux){
+                if($aux->dni == $_SESSION['dni']){
+                    $this->vista('Home' , $aux->nombre );
+                    break;  
+                }
+            }
+        }
+        else{
+            $this->vista('Home');
+        } 
      }
 }   

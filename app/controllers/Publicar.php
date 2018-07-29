@@ -7,8 +7,8 @@ Class Publicar extends Controlador {
     {
         
         $this->Publicars= $this->modelo('Publicar_m');
-        session_start();
-        if($_SESSION['dni']){
+        
+        if(!empty($_SESSION['dni'])){
             $this->data = $this->Publicars->Perfil();
         }
 
@@ -16,7 +16,7 @@ Class Publicar extends Controlador {
     public function index()
     {
 
-        if($_SESSION['dni']){
+        if(!empty($_SESSION['dni'])){
             $this->vista('Publicar', $this->data);
         }
         else{
@@ -26,15 +26,19 @@ Class Publicar extends Controlador {
 
     public function location()
     {
-        $aux = $this->data->direccion.", ".$this->data->ciudad." , ".$this->data->estado ;
-        print_r($aux);
-        //echo  json_encode($aux, true); 
-        echo "hola";
+        if(!empty($this->data->direccion) || !empty($this->data->ciudad) || !empty($this->data->estado)){
+            $aux = $this->data->direccion.", ".$this->data->ciudad." , ".$this->data->estado ;
+            echo $aux;
+        }
+        else {
+            echo  "puno"; // corregir -  autocentrado de mapa
+        }
     }
 
     function publicar_nuevo()
     {
         $this->Publicars->ingresar();
-        $this->vista('Publicar', $this->data);
+        //$this->vista('Publicar', $this->data);
+        header('location:'.RUTA_URL);
     }
 }

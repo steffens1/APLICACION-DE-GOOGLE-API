@@ -9,23 +9,25 @@
         }
         public function validar()
         {
-            $email =  $_POST['form-sign-in-email'];
-            $contraseña = $_POST['form-sign-in-password'];
-            $this->db->query("SELECT dni ,  correo  , contraseña FROM usuario  as  a WHERE a.correo ='".$email."' AND a.contraseña='".$contraseña."';");
-            $result  = $this->db->registro();
 
-           if($email == $result->correo &&  $contraseña == $result->contraseña){
+            $email =  $_POST['email'];
+            $contraseña = $_POST['contra'];
+            
+            $this->db->query("SELECT dni ,  correo  , contrasena FROM usuario  as  a WHERE a.correo ='$email' AND a.contrasena='$contraseña'");
+            $result  = $this->db->registro();
+            
+           if($email == $result->correo &&  $contraseña == $result->contrasena){
                 $this->var=$result->dni;
-                return true ;
+                $_SESSION['dni']=$result->dni;   
             }
-            else return false;
+            return $result;
         }
+
         public function GetUser()
         {
             if($this->validar()){
-                return $this->var;
+                return $this->var;  
             }
-            else return 0;
         }
 
         public function Perfil()
@@ -38,7 +40,6 @@
 
         public function Actualiza()
         {
-
             $dni=$_SESSION['dni'];
             $nombre = $_POST['nombre'];
             $correo = $_POST['correo'];
@@ -66,6 +67,5 @@
             $this->db->query($sql);
             return $this->db->registros();
         }
-
     }
 

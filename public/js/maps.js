@@ -27,10 +27,10 @@ function DibujaCajaInfo(category, infoboxContent, json, i){
                     '<div class="wrapper">' +
                         '<a href="#" class="quick-view" data-toggle="modal" data-target="#modal" id="' + id + '">Vista Previa</a>' +
                         '<hr>' +
-                        '<a href="' + url +  '" class="detail">Mas detalles </a>' +
+                        '<a href="'+ url +'/'+ id + '" class="detail">Mas detalles </a>' +
                     '</div>' +
                 '</div>' +
-                '<a href="' + url +  '" class="description">' +
+                '<a href="' + url +'/'+ id + '" class="description">' +
                     '<div class="meta">' +
                         price +
                         '<h2>' + title +  '</h2>' +
@@ -275,7 +275,7 @@ if( $body.hasClass('map-fullscreen') ) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
-    console.log(json);
+   // console.log(json);
     $.get("external/_infobox.js", function() {
         gMap();
     });
@@ -305,7 +305,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
         var activeMarker = false;
         var lastClicked = false;
 
-        //localizar();
+        
 
         for (var i = 0; i < json.length; i++) {
 
@@ -332,7 +332,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
                     '</div>';
             }
 
-            // Create marker on the map ------------------------------------------------------------------------------------
+            // crear marcador de mapa------------------------------------------------------------------------------------
 
             var marker = new RichMarker({
                 position: new google.maps.LatLng( json[i].lat, json[i].lng ),
@@ -344,7 +344,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
 
             newMarkers.push(marker);
 
-            // Create infobox for marker -----------------------------------------------------------------------------------
+            // crear caja de detalles -----------------------------------------------------------------------------------
 
             var infoboxContent = document.createElement("div");
             var infoboxOptions = {
@@ -369,7 +369,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
 
             newMarkers[i].infobox = new InfoBox(infoboxOptions);
 
-            // Show infobox after click ------------------------------------------------------------------------------------
+            // mostrar infobox ------------------------------------------------------------------------------------
            
 
 
@@ -392,7 +392,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
                 }
             })(marker, i));
 
-            // Fade infobox after close is clicked -------------------------------------------------------------------------
+            // ocultar al cerrar imagen-------------------------------------------------------------------------
 
             google.maps.event.addListener(newMarkers[i].infobox, 'closeclick', (function(marker, i) {
                 return function() {
@@ -402,8 +402,6 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
                 }
             })(marker, i));
         }
-
-        // Close infobox after click on map --------------------------------------------------------------------------------
 
         google.maps.event.addListener(map, 'click', function(event) {
             if( activeMarker != false && lastClicked != false ){
@@ -430,7 +428,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
             markerClicked = 0;
         });
 
-        // Create marker clusterer -----------------------------------------------------------------------------------------
+        // crear cluster -----------------------------------------------------------------------------------------
 
         var clusterStyles = [
             {
@@ -445,7 +443,7 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
             return multiChoice(sameLatitude, sameLongitude, json);
         };
 
-        // Dynamic loading markers and data from JSON ----------------------------------------------------------------------
+        // carga dinamica  ----------------------------------------------------------------------
 
         google.maps.event.addListener(map, 'idle', function() {
             var visibleArray = [];
@@ -477,11 +475,11 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
                 }
             });
 
-            // Create list of items in Results sidebar ---------------------------------------------------------------------
+            // crear lista de items---------------------------------------------------------------------
 
             $('.items-list .results').html( visibleItemsArray );
 
-            // Check if images are cached, so will not be loaded again
+            // revisar si las imagenes fueron cargadas
 
             $.each(json, function(a) {
                 if( map.getBounds().contains( new google.maps.LatLng( json[a].lat, json[a].lng ) ) ) {
@@ -489,9 +487,9 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
                 }
             });
 
-            // Call Rating function ----------------------------------------------------------------------------------------
+            // llamar funcion de evaluacin ----------------------------------------------------------------------------------------
 
-            rating('.results .item');
+            //rating('.results .item');
 
             var $singleItem = $('.results .item');
             $singleItem.hover(
@@ -528,24 +526,25 @@ function CrearPaginaInicioGoogleMap(_latitude,_longitude,json){
             }
         }
 
-
-        // Geolocation of user -----------------------------------------------------------------------------------------
-
-/*
-function localizar(){
+$("#btn-localizar").click(function(){
+  
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(success);
     } else {
         console.log('geolocalizacion no soportada');
     }
-    
+
     function success(position) {
         var locationCenter = new google.maps.LatLng( position.coords.latitude, position.coords.longitude);
         map.setCenter( locationCenter );
         map.setZoom(14);
     }
-}
-*/
+
+}) ;
+   
+    
+      
+
         
 
         // Autocomplete address ----------------------------------------------------------------------------------------
@@ -612,45 +611,45 @@ function localizar(){
 
 }
 
-function buscar(){
-    $("#search-location").click(function(){
-        var direccion = $("#location-usr").val(); 
-        var dir;
 
-                $.ajax({
-                    url: "https://maps.googleapis.com/maps/api/geocode/json?address="+direccion+"&key=AIzaSyCVIDoPcGW-nEx3tPx4iH3VYETVgfMy-YU",
-                    success: function(sa){
-                        dir= sa.results[0].geometry.location; 
-                        var _latitude = dir.lat;
-                        var _longitude = dir.lng;
-                        var jsonPath   = 'inicio/consulta';
-        
-                        // Load JSON data and create Google Maps
-                        $.getJSON(jsonPath) 
-                            .done(function(json) {
-                                   console.log(json); 
-                                CrearPaginaInicioGoogleMap(_latitude,_longitude,json);
-                                
-                            })
-                            .fail(function( jqxhr, textStatus, error ){
-                                console.log(error);
-                            });
-                    }
-                });
-    })
-}
+$("#search-location").click(function(){
+    var direccion = $("#location-usr").val(); 
+    var dir;
 
-buscar();
+            $.ajax({
+                url: "https://maps.googleapis.com/maps/api/geocode/json?address="+direccion+"&key=AIzaSyCVIDoPcGW-nEx3tPx4iH3VYETVgfMy-YU",
+                success: function(sa){
+                    dir= sa.results[0].geometry.location; 
+                    var _latitude = dir.lat;
+                    var _longitude = dir.lng;
+                    var jsonPath   = 'Home/consulta';
+    
+                    // Load JSON data and create Google Maps
+                    $.getJSON(jsonPath) 
+                        .done(function(json) {
+                                // console.log(json); 
+                            CrearPaginaInicioGoogleMap(_latitude,_longitude,json);
+                            
+                        })
+                        .fail(function( jqxhr, textStatus, error ){
+                            console.log(error);
+                        });
+                }
+            });
+})
+
+
 //google.maps.event.addDomListener(window, 'load', CrearPaginaInicioGoogleMap);
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Item Detail Map - Google
+// detalle
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 function itemDetailMap(json){
     var mapCenter = new google.maps.LatLng(json.lat,json.lng);
-    //console.log(json.lat);
+    console.log(json.lat, json .lng);
+    
     var mapOptions = {
         zoom: 14,
         center: mapCenter,
@@ -662,6 +661,44 @@ function itemDetailMap(json){
         draggable: true
     };
 
+    var mapElement = document.getElementById('map-detail');
+    var map = new google.maps.Map(mapElement, mapOptions);
+    var icon
+    if( json.type_icon ) icon = '<img src="' + json.type_icon +  '">';
+    else icon = '';
+
+    var markerContent = document.createElement('DIV');
+    markerContent.innerHTML =
+        '<div class="map-marker">' +
+            '<div class="icon">' +
+            icon +
+            '</div>' +
+        '</div>';
+
+    // crear marcador en el mapa ------------------------------------------------------------------------------------
+
+    var marker = new RichMarker({
+        position: new google.maps.LatLng( json.lat, json.lng ),
+        map: map,
+        draggable: false,
+        content: markerContent,
+        flat: true
+    });
+
+    marker.content.className = 'marker-loaded';
+}*/
+function itemDetailMap(json){
+    var mapCenter = new google.maps.LatLng(json.lat,json.lng);
+    var mapOptions = {
+        zoom: 14,
+        center: mapCenter,
+        disableDefaultUI: true,
+        scrollwheel: false,
+        styles: mapStyles,
+        panControl: false,
+        zoomControl: false,
+        draggable: true
+    };
     var mapElement = document.getElementById('map-detail');
     var map = new google.maps.Map(mapElement, mapOptions);
     if( json.type_icon ) var icon = '<img src="' + json.type_icon +  '">';
@@ -713,17 +750,17 @@ function simpleMap(_latitude, _longitude, draggableMarker){
     var mapElement = document.getElementById('map-simple');
     var map = new google.maps.Map(mapElement, mapOptions);
 
-    // Google map marker content -----------------------------------------------------------------------------------
 
     var markerContent = document.createElement('DIV');
     markerContent.innerHTML =
         '<div class="map-marker">' +
             '<div class="icon"></div>' +
         '</div>';
-    // Create marker on the map ------------------------------------------------------------------------------------
+ 
 
     var marker = new RichMarker({
-        //position: mapCenter,
+
+
         position: new google.maps.LatLng( _latitude, _longitude ),
         map: map,
         draggable: draggableMarker,
@@ -732,19 +769,15 @@ function simpleMap(_latitude, _longitude, draggableMarker){
     });
     
     marker.addListener('drag', function (event) {
-        console.log(this.getPosition().lat());
-        $("#latitud-ingresar").val( this.getPosition().lat());
-        $("#longitud-ingresar").val(this.getPosition().lng());
+      // console.log(this.getPosition().lat());
+        $("#latitudx").val( this.getPosition().lat());
+        $("#longitudx").val(this.getPosition().lng());
+       // console.log(this);
     });
 
     marker.content.className = 'marker-loaded';
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Functions
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// Push items to array and create <li> element in Results sidebar ------------------------------------------------------
 
 function pushItemsToArray(json, a, category, visibleItemsArray){
     var itemPrice;
@@ -786,7 +819,6 @@ function pushItemsToArray(json, a, category, visibleItemsArray){
     }
 }
 
-// Center map to marker position if function is called (disabled) ------------------------------------------------------
 
 function centerMapToMarker(){
     $.each(json, function(a) {
@@ -798,31 +830,6 @@ function centerMapToMarker(){
         }
     });
 }
-
-// Create modal if more items are on the same location (example: one building with floors) -----------------------------
-
-function multiChoice(sameLatitude, sameLongitude, json) {
-    //if (clickedCluster.getMarkers().length > 1){
-        var multipleItems = [];
-        $.each(json, function(a) {
-            if( json[a].lat == sameLatitude && json[a].lng == sameLongitude ) {
-                pushItemsToArray(json, a, json[a].category, multipleItems);
-            }
-        });
-        $('body').append('<div class="modal-window multichoice fade_in"></div>');
-        $('.modal-window').load( 'external/_modal-multichoice.html', function() {
-            $('.modal-window .modal-wrapper .items').html( multipleItems );
-            rating('.modal-window');
-        });
-        $('.modal-window .modal-background, .modal-close').live('click',  function(e){
-            $('.modal-window').addClass('fade_out');
-            setTimeout(function() {
-                $('.modal-window').remove();
-            }, 300);
-        });
-    //}
-}
-
 
 function redrawMap(mapProvider, map){
     $('.map .toggle-navigation').click(function() {
